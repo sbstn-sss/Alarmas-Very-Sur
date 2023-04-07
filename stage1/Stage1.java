@@ -15,7 +15,7 @@ public class Stage1 {
         for (int i = 0; i < numDoors; i++)
             doors.add(new Door());
         int numWindows = in.nextInt();
-        ....
+        //....
         in.close();
     }
     public void executeUserInteraction (Scanner in, PrintStream out){
@@ -35,7 +35,7 @@ public class Stage1 {
                         doors.get(0).close();
                     break;
                 case 'w':
-                    ....
+                    //....
                 case 'x': done=true;   // Added to finish the program
             }
         }
@@ -44,12 +44,12 @@ public class Stage1 {
         out.print("Step");
         for (int i=0; i < doors.size(); i++)
             out.print("\t"+doors.get(i).getHeader());
-        .....
+        //.....
         out.println();
     }
     public void printState(int step, PrintStream out){
         out.print(step);
-        .....
+        //.....
     }
     public static void main(String [] args) throws IOException {
         if (args.length != 1) {
