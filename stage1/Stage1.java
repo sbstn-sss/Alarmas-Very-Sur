@@ -22,8 +22,8 @@ public class Stage1 {
         for (int i = 0; i < numWindows; i++)
             windows.add(new Window());
 
-        System.out.println(numDoors);
-        System.out.println(numWindows);
+        //System.out.println(numDoors);
+        //System.out.println(numWindows);
         in.close();
     }
 
@@ -58,8 +58,7 @@ public class Stage1 {
         boolean done = false;
         printHeader(out);
         while (!done) {
-            //
-            System.out.println(step);
+            //System.out.println(step);
             if (correct_command)
                 printState(step++, out); // se podria agregar un try que haga que al ingresar un comando invalido, no se ejecute print state.
 
@@ -106,7 +105,7 @@ public class Stage1 {
         }
         Scanner in = new Scanner(new File(args[0]));
         //
-        System.out.println("File: " + args[0]);
+        //System.out.println("File: " + args[0]);
         //
         Stage1 stage = new Stage1();
 
