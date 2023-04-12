@@ -1,11 +1,21 @@
 import java.util.ArrayList;
 
 public class Central {
+    //atributos
+    public int getState(){
+        return isArmed?1:0;
+    }
+    private ArrayList<Sensor> zone0;
+    private boolean isArmed;
+    private Siren siren;
+
+    //constructor
     public Central(){
         zone0 = new ArrayList<Sensor>();
         isArmed = false;
         siren = null;
     }
+    //metodos
     public void arm() {
         isArmed=true;
     }
@@ -24,10 +34,4 @@ public class Central {
     public String getHeader(){
         return "Central";
     }
-    public int getState(){
-        return isArmed?1:0;
-    }
-    private ArrayList<Sensor> zone0;
-    private boolean isArmed;
-    private Siren siren;
 }

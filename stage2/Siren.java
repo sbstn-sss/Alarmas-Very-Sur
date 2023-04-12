@@ -2,6 +2,11 @@ import java.io.File;
 import java.net.URL;
 
 public class Siren {
+    //atributos
+    private URL dir;
+    private boolean isSounding;
+    private AePlayWave aWave;
+    //constructor
     public Siren (String soundFileName){
         try {
             dir = new File(soundFileName).toURI().toURL();
@@ -11,6 +16,7 @@ public class Siren {
         }
         ...
     }
+    //metodos
     public void play(){
         ...
         aWave= new AePlayWave(dir);
@@ -26,7 +32,4 @@ public class Siren {
     public int getState() {
         return ....;
     }
-    private URL dir;
-    private boolean isSounding;
-    private AePlayWave aWave;
 }

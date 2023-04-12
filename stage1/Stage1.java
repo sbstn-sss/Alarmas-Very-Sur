@@ -27,6 +27,7 @@ public class Stage1 {
         in.close();
     }
 
+    //prints para la salida
     public void printHeader(PrintStream out){
         out.print("Step");
 

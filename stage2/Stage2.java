@@ -5,36 +5,74 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Stage2 {
+    //atributos
+    private ArrayList<Door> doors;
+    private ArrayList<Window> windows;
+    private Central central;
+    private Siren siren;
+    //constructor
     public Stage2() {
         doors = new ArrayList<Door>();
         windows = new ArrayList<Window>();
     }
+    //metodos
     public void readConfiguration(Scanner in){
         // reading <#_doors> <#_windows> <#_PIRs>
         central = new Central();
         int numDoors = in.nextInt();
-        for (int i = 0; i < numDoors; i++) {
-            Door d = new Door();
-            doors.add(d);
+        for (int i = 0; i < numDoors; i++)
+            doors.add(new Door());
+
             central....
         }
         int numWindows = in.nextInt();
-        for (int i = 0; i < numWindows; i++) {
-            Window w = new Window();
-            windows.add(w);
+        for (int i = 0; i < numWindows; i++)
+            windows.add(new Window());
+
             central....
         }
+
         in.nextLine();
         String soundFile = in.next();
         siren = new Siren(soundFile);
         central.setSiren(siren);
         in.close();
     }
+    //prints para la salida
+    public void printHeader(PrintStream out){
+        out.print("Step");
+
+        for (int i = 0; i < doors.size(); i++)
+            out.print("\t" + doors.get(i).getHeader());
+
+        for (int i = 0; i < windows.size(); i++)
+            out.print("\t" + windows.get(i).getHeader());
+
+        out.print("\tSiren\tCentral");
+
+        out.println();
+    }
+    public void printState(int step, PrintStream out){
+        out.print(step); out.print("   ");
+
+        for (int i = 0; i < doors.size(); i++)
+            out.print("\t" + doors.get(i).getState());
+
+        for (int i = 0; i < windows.size(); i++)
+            out.print("\t" + windows.get(i).getState());
+
+        out.print(0); // completar para siren
+        out.print(0); // completar para central
+
+        out.println();
+    }
+    //interaccion usuario
     public void executeUserInteraction (Scanner in, PrintStream out){
         String command;
         char parameter;
         int i;
-        int step=0;
+        int step = 0;
+
         printHeader(out);
         while (true) {
             printState(step++, out);
@@ -60,14 +98,7 @@ public class Stage2 {
             central.checkZone();
         }
     }
-    public void printHeader(PrintStream out){
-        ...
-        out.println();
-    }
-    public void printState(int step, PrintStream out){
-        ...
-        out.println();
-    }
+
     public static void main(String [] args) throws IOException {
         if (args.length != 1) {
             System.out.println("Usage: java Stage1 <configurationFile.txt>");
@@ -79,9 +110,4 @@ public class Stage2 {
         stage.readConfiguration(in);
         stage.executeUserInteraction(new Scanner(System.in), new PrintStream(new File("output.csv")));
     }
-
-    private ArrayList<Door> doors;
-    private ArrayList<Window> windows;
-    private Central central;
-    private Siren siren;
 }
