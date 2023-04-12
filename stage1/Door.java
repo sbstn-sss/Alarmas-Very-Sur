@@ -1,4 +1,13 @@
 public class Door {
+    //atributos
+    private MagneticSensor magneticSensor;
+    private State state;
+    private final int id;
+    private static int nextId;
+    static {
+        nextId = 0;
+    }
+    //constructor
     public Door () {
         magneticSensor = new MagneticSensor();
         close();
@@ -8,9 +17,11 @@ public class Door {
     }
     public void open() {
         state = State.OPEN;
+        magneticSensor.moveMagnetAwayFromSwitch();
     }
     public void close() {
         state = State.CLOSE;
+        magneticSensor.putMagnetNearSwitch();
     }
     public String getHeader(){
         return "d"+id;
@@ -18,15 +29,8 @@ public class Door {
     public int getState(){
         if(state == State.OPEN)
             return 1;
-        else;
+        else{
             return 0;
-    }
-
-    private MagneticSensor magneticSensor;
-    private State state;
-    private final int id;
-    private static int nextId;
-    static {
-        nextId = 0;
+        }
     }
 }

@@ -1,4 +1,11 @@
 public class Window {
+    //atributos
+    private MagneticSensor magneticSensor;
+    private State state;
+    private final int id;
+    private static int nextId=0;
+
+    //constructor
     public Window() {
         magneticSensor= new MagneticSensor();
         close();
@@ -8,9 +15,11 @@ public class Window {
     }
     public void open() {
         state = State.OPEN;
+        magneticSensor.moveMagnetAwayFromSwitch();
     }
     public void close() {
         state = State.CLOSE;
+        magneticSensor.putMagnetNearSwitch();
     }
     public String getHeader(){
         return "w"+id;
@@ -18,11 +27,8 @@ public class Window {
     public int getState(){
         if(state == State.OPEN)
             return 1;
-        else;
+        else {
             return 0;
+        }
     }
-    private MagneticSensor magneticSensor;
-    private State state;
-    private final int id;
-    private static int nextId=0;
 }
