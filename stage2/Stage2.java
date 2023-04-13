@@ -63,7 +63,7 @@ public class Stage2 {
             out.print("\t" + windows.get(i).getState());
 
         out.print("\t");out.print(0);out.print("    ");// completar para siren
-        out.print("\t");out.print(0); // completar para central
+        out.print("\t");out.print(central.getState()); // completar para central
 
         out.println();
     }
@@ -117,21 +117,31 @@ public class Stage2 {
                     parameter = in.next().charAt(0);
                     switch (parameter) {
                         case 'a':
-                            //todo, todas las puertas y ventanas deben estar cerradas
+                            //checkzone incluye armado
+                            central.checkZone();//todo, todas las puertas y ventanas deben estar cerradas
                             break;
                         case 'p':
+                            System.out.println("no se");
                             //perimetro
                             break;
                         case 'b':
-                            //desarmar
+                            central.disarm();
                             break;
                         default:
                             correct_command = false;
                     }
+                    break;
+                //borrar
+                case 'p':
+                    siren.play();
+                    break;
+                case 's':
+                    siren.stop();
+                    break;
                 default:
                     correct_command = false;
             }
-            central.checkZone();
+            //central.checkZone(); // dudoso
         }
     }
 
