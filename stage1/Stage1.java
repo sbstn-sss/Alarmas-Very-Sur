@@ -76,7 +76,7 @@ public class Stage1 {
                         correct_command = false;
                     }
                     break;
-                case 'w':
+                case 'w': // caso 0
                     parameter = in.next().charAt(0);
                     if (parameter == 'o') {
                         windows.get(0).open();

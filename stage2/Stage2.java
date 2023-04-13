@@ -9,7 +9,9 @@ public class Stage2 {
     private ArrayList<Door> doors;
     private ArrayList<Window> windows;
     private Central central;
+    private ArrayList<ArrayList<Sensor>> zones;
     private Siren siren;
+
     //constructor
     public Stage2() {
         doors = new ArrayList<Door>();
@@ -19,21 +21,31 @@ public class Stage2 {
     public void readConfiguration(Scanner in){
         // reading <#_doors> <#_windows> <#_PIRs>
         central = new Central();
+
+        //inicializando zonas
+        zones = new ArrayList<>(2); // zona 0 puerta princ, zona 1 ventanas y puertas, zona 2 PIR
+        for (int i = 0; i < 2; i++){ // son 3 pero utilizo 2 para esta stage
+            zones.add(new ArrayList<Sensor>());
+        }
+
         int numDoors = in.nextInt();
         for (int i = 0; i < numDoors; i++){
             doors.add(new Door());
-
-            central.addNewSensor(doors.get(i).getMagneticSensor()); // es private asi que xd
+            if (i == 0)
+                central.addNewSensor(zones.get(0), doors.get(i).getMagneticSensor()); // es private asi que xd
+            else
+                central.addNewSensor(zones.get(1), doors.get(i).getMagneticSensor()); // zona 1
         }
         int numWindows = in.nextInt();
         for (int i = 0; i < numWindows; i++){
             windows.add(new Window());
 
-            central.addNewSensor(windows.get(i).getMagneticSensor());// es private asi que xd
+            central.addNewSensor(zones.get(1) ,windows.get(i).getMagneticSensor());// es private asi que xd
         }
 
         in.nextLine();
         String soundFile = in.next();
+        central.setZones(zones);
         siren = new Siren(soundFile);
         central.setSiren(siren);
         in.close();
@@ -115,17 +127,57 @@ public class Stage2 {
 
                 case 'k':
                     parameter = in.next().charAt(0);
+
+                    boolean state_z0 = central.checkZoneV2(zones.get(0));
+                    boolean state_z1 = central.checkZoneV2(zones.get(1));
+
                     switch (parameter) {
                         case 'a':
-                            //checkzone incluye armado
-                            central.checkZone();//todo, todas las puertas y ventanas deben estar cerradas
+                            if ( state_z0 && state_z1 ) { // si ambas son armables se arma
+                                if(central.getState() == 0) {
+                                    central.arm();
+                                    System.out.println("Se ha armado la alarma");
+                                }else{
+                                    System.out.println("La alarma ya esta armado");
+                                }
+                            }else{
+                                System.out.println("No se ha podido armar la alarma por las zonas:");
+                                if(!state_z0) {
+                                    System.out.println(0);
+                                }
+                                if (!state_z1)
+                                    System.out.println(1);
+                                System.out.println();
+                            }
+
                             break;
                         case 'p':
-                            System.out.println("no se");
-                            //perimetro
+                            if ( state_z0 && state_z1 ) { // si ambas son armables se arma
+                                if(central.getState() == 0) {
+                                    central.arm();
+                                    System.out.println("Se ha armado la alarma");
+                                }else{
+                                    System.out.println("La alarma ya esta armada");
+                                }
+                            }else{
+                                System.out.println("No se ha podido armar la alarma debido a las siguientes zonas:");
+                                if(!state_z0) {
+                                    System.out.println(0);
+                                }
+                                if (!state_z1)
+                                    System.out.println(1);
+                                System.out.println();
+                            }
+
                             break;
-                        case 'b':
-                            central.disarm();
+
+                        case 'd':
+                            if (central.getState() == 1) {
+                                central.disarm();
+                                System.out.println("Se ha desarmado la alarma");
+                            }else{
+                                System.out.println("La alarma ya esta desarmada");
+                            }
                             break;
                         default:
                             correct_command = false;
