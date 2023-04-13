@@ -63,16 +63,15 @@ public class Stage1 {
             if (correct_command)
                 printState(step++, out); // se podria agregar un try que haga que al ingresar un comando invalido, no se ejecute print state.
 
+            correct_command = true;
             command = in.next().charAt(0);
             switch (command) {
                 case 'd':
                     parameter = in.next().charAt(0);
                     if (parameter == 'o') {
                         doors.get(0).open();
-                        correct_command = true;
                     } else if (parameter == 'c'){
                         doors.get(0).close();
-                        correct_command = true;
                     } else{
                         correct_command = false;
                     }
@@ -81,10 +80,8 @@ public class Stage1 {
                     parameter = in.next().charAt(0);
                     if (parameter == 'o') {
                         windows.get(0).open();
-                        correct_command = true;
                     } else if (parameter == 'c'){
                         windows.get(0).close();
-                        correct_command = true;
                     } else{
                         correct_command = false;
                     }

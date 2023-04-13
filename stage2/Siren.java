@@ -14,22 +14,22 @@ public class Siren {
         catch (Exception exc){
             exc.printStackTrace(System.out);
         }
-        ...
+        isSounding = false;
     }
     //metodos
     public void play(){
-        ...
+        isSounding = true;
         aWave= new AePlayWave(dir);
         aWave.start();
     }
     public void stop(){
-        ...
+        isSounding = false;
         aWave.stopSounding();
     }
     public String getHeader() {
         return "Siren";
     }
     public int getState() {
-        return ....;
+        return isSounding?1:0;
     }
 }

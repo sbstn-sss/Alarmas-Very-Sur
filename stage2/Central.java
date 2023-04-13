@@ -2,9 +2,6 @@ import java.util.ArrayList;
 
 public class Central {
     //atributos
-    public int getState(){
-        return isArmed?1:0;
-    }
     private ArrayList<Sensor> zone0;
     private boolean isArmed;
     private Siren siren;
@@ -17,10 +14,10 @@ public class Central {
     }
     //metodos
     public void arm() {
-        isArmed=true;
+        isArmed = true;
     }
     public void disarm() {
-        ....
+        isArmed = false;
     }
     public void setSiren(Siren s) {
         siren =s;
@@ -29,9 +26,12 @@ public class Central {
         zone0.add(s);
     }
     public void checkZone(){
-        ...
+
     }
     public String getHeader(){
         return "Central";
+    }
+    public int getState(){
+        return isArmed?1:0;
     }
 }

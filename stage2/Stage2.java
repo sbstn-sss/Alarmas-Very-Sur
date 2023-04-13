@@ -23,13 +23,13 @@ public class Stage2 {
         for (int i = 0; i < numDoors; i++)
             doors.add(new Door());
 
-            central....
+            //central.... // an~adir sensor magnetico a puerta
         }
         int numWindows = in.nextInt();
         for (int i = 0; i < numWindows; i++)
             windows.add(new Window());
 
-            central....
+            //central.... // an~adir sensor magnetico a ventana
         }
 
         in.nextLine();
@@ -48,7 +48,8 @@ public class Stage2 {
         for (int i = 0; i < windows.size(); i++)
             out.print("\t" + windows.get(i).getHeader());
 
-        out.print("\tSiren\tCentral");
+        out.print("\t" + central.getHeader());
+        out.print("\t" + central.getHeader());
 
         out.println();
     }
@@ -73,27 +74,61 @@ public class Stage2 {
         int i;
         int step = 0;
 
+        boolean correct_command = true;
         printHeader(out);
         while (true) {
-            printState(step++, out);
+
+            if (correct_command)
+                printState(step++, out);
+            correct_command = true;
+
             command = in.next();
             if (command.charAt(0)=='x') break;
             switch (command.charAt(0)) {
                 case 'd':
                     i = Integer.parseInt(command.substring(1));
                     parameter = in.next().charAt(0);
-                    if (parameter== 'o')
+                    if (parameter == 'o') {
                         doors.get(i).open();
-                    else
+
+                    } else if (parameter == 'c'){
                         doors.get(i).close();
+
+                    } else{
+                        correct_command = false;
+                    }
                     break;
+
                 case 'w':
-                    ...                    break;
+                    parameter = in.next().charAt(0);
+                    if (parameter == 'o') {
+                        windows.get(0).open();
+
+                    } else if (parameter == 'c'){
+                        windows.get(0).close();
+
+                    } else{
+                        correct_command = false;
+                    }
+                    break;
+
                 case 'k':
                     parameter = in.next().charAt(0);
                     switch (parameter) {
-                        ...
+                        case 'a':
+                            //todo, todas las puertas y ventanas deben estar cerradas
+                            break;
+                        case 'p';
+                            //perimetro
+                            break;
+                        case 'b';
+                            //desarmar
+                            break;
+                        default:
+                            correct_command = false
                     }
+                default:
+                    correct_command = false;
             }
             central.checkZone();
         }
