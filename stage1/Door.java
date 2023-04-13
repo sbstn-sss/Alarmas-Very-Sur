@@ -38,7 +38,4 @@ public class Door {
             return 0;
         }
     }
-    public MagneticSensor getMagneticSensor(){
-        return magneticSensor;
-    }
 }
