@@ -1,3 +1,3 @@
 # Mucho Sur
-Proyecto POO
+Muerte a POO
 
