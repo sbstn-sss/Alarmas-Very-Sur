@@ -23,13 +23,13 @@ public class Stage2 {
         for (int i = 0; i < numDoors; i++)
             doors.add(new Door());
 
-            //central.... // an~adir sensor magnetico a puerta
+        central.addNewSensor(doors.get(i).magneticSensor); // es private asi que xd
         }
         int numWindows = in.nextInt();
         for (int i = 0; i < numWindows; i++)
             windows.add(new Window());
 
-            //central.... // an~adir sensor magnetico a ventana
+            central.addNewSensor(windows.get(i).magneticSensor); // es private asi que xd
         }
 
         in.nextLine();

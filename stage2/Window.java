@@ -31,4 +31,7 @@ public class Window {
             return 0;
         }
     }
+    public MagneticSensor getMagneticSensor(){
+        return magneticSensor;
+    }
 }
