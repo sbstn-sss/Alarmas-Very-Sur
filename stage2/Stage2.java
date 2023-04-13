@@ -48,7 +48,7 @@ public class Stage2 {
         for (int i = 0; i < windows.size(); i++)
             out.print("\t" + windows.get(i).getHeader());
 
-        out.print("\t" + central.getHeader());
+        out.print("\t" + siren.getHeader());
         out.print("\t" + central.getHeader());
 
         out.println();
@@ -62,7 +62,7 @@ public class Stage2 {
         for (int i = 0; i < windows.size(); i++)
             out.print("\t" + windows.get(i).getState());
 
-        out.print("\t");out.print(0); // completar para siren
+        out.print("\t");out.print(0);out.print("    ");// completar para siren
         out.print("\t");out.print(0); // completar para central
 
         out.println();
@@ -89,8 +89,6 @@ public class Stage2 {
                     i = Integer.parseInt(command.substring(1));
                     parameter = in.next().charAt(0);
                     if (parameter == 'o') {
-                        //prueba del i
-                        System.out.println(i);
                         doors.get(i).open();
 
                     } else if (parameter == 'c'){
