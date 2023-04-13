@@ -20,16 +20,16 @@ public class Stage2 {
         // reading <#_doors> <#_windows> <#_PIRs>
         central = new Central();
         int numDoors = in.nextInt();
-        for (int i = 0; i < numDoors; i++)
+        for (int i = 0; i < numDoors; i++){
             doors.add(new Door());
 
-        central.addNewSensor(doors.get(i).magneticSensor); // es private asi que xd
+            central.addNewSensor(doors.get(i).getMagneticSensor()); // es private asi que xd
         }
         int numWindows = in.nextInt();
-        for (int i = 0; i < numWindows; i++)
+        for (int i = 0; i < numWindows; i++){
             windows.add(new Window());
 
-            central.addNewSensor(windows.get(i).magneticSensor); // es private asi que xd
+            central.addNewSensor(windows.get(i).getMagneticSensor());// es private asi que xd
         }
 
         in.nextLine();
@@ -62,8 +62,8 @@ public class Stage2 {
         for (int i = 0; i < windows.size(); i++)
             out.print("\t" + windows.get(i).getState());
 
-        out.print(0); // completar para siren
-        out.print(0); // completar para central
+        out.print("\t");out.print(0); // completar para siren
+        out.print("\t");out.print(0); // completar para central
 
         out.println();
     }
@@ -89,6 +89,8 @@ public class Stage2 {
                     i = Integer.parseInt(command.substring(1));
                     parameter = in.next().charAt(0);
                     if (parameter == 'o') {
+                        //prueba del i
+                        System.out.println(i);
                         doors.get(i).open();
 
                     } else if (parameter == 'c'){
@@ -100,12 +102,13 @@ public class Stage2 {
                     break;
 
                 case 'w':
+                    i = Integer.parseInt(command.substring(1));
                     parameter = in.next().charAt(0);
                     if (parameter == 'o') {
-                        windows.get(0).open();
+                        windows.get(i).open();
 
                     } else if (parameter == 'c'){
-                        windows.get(0).close();
+                        windows.get(i).close();
 
                     } else{
                         correct_command = false;
@@ -118,14 +121,14 @@ public class Stage2 {
                         case 'a':
                             //todo, todas las puertas y ventanas deben estar cerradas
                             break;
-                        case 'p';
+                        case 'p':
                             //perimetro
                             break;
-                        case 'b';
+                        case 'b':
                             //desarmar
                             break;
                         default:
-                            correct_command = false
+                            correct_command = false;
                     }
                 default:
                     correct_command = false;

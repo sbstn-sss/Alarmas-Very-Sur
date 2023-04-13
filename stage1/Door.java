@@ -15,6 +15,11 @@ public class Door {
     {
         id = nextId++;
     }
+
+    public MagneticSensor getMagneticSensor() {
+        return magneticSensor;
+    }
+
     public void open() {
         state = State.OPEN;
         magneticSensor.moveMagnetAwayFromSwitch();
@@ -32,5 +37,8 @@ public class Door {
         else{
             return 0;
         }
+    }
+    public MagneticSensor getMagneticSensor(){
+        return magneticSensor;
     }
 }
