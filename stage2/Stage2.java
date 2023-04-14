@@ -103,12 +103,14 @@ public class Stage2 {
                     if (parameter == 'o') {
                         doors.get(i).open();
                         if (central.getState() == 1)
-                            siren.play();
+                            if(siren.getState() == 0)
+                                siren.play();
 
                     } else if (parameter == 'c'){
                         doors.get(i).close();
                         if (central.getState() == 1)
-                            siren.stop();
+                            if (central.checkZoneV2(zones.get(0)) && central.checkZoneV2(zones.get(1)))
+                                siren.stop();
 
                     } else{
                         correct_command = false;
@@ -121,12 +123,14 @@ public class Stage2 {
                     if (parameter == 'o') {
                         windows.get(i).open();
                         if (central.getState() == 1)
-                            siren.play();
+                            if(siren.getState() == 0)
+                                siren.play();
 
                     } else if (parameter == 'c'){
                         windows.get(i).close();
                         if (central.getState() == 1)
-                            siren.stop();
+                            if (central.checkZoneV2(zones.get(0)) && central.checkZoneV2(zones.get(1)))
+                                siren.stop();
 
                     } else{
                         correct_command = false;
