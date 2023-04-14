@@ -22,6 +22,7 @@ public class Central {
     }
     public void disarm() {
         isArmed = false;
+        siren.stop();
     }
     public void setSiren(Siren s) {
         siren = s;
