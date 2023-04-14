@@ -87,19 +87,21 @@ public class Stage2 {
         int step = 0;
 
         boolean correct_command = true;
+        boolean done = false;
         printHeader(out);
-        while (true) {
+        while (!done) {
 
             if (correct_command)
                 printState(step++, out);
             correct_command = true;
 
             command = in.next();
-            if (command.charAt(0)=='x') break;
+
             switch (command.charAt(0)) {
                 case 'd':
                     i = Integer.parseInt(command.substring(1));
                     parameter = in.next().charAt(0);
+
                     if (parameter == 'o') {
                         doors.get(i).open();
                         if (central.getState() == 1)
@@ -194,6 +196,10 @@ public class Stage2 {
                         default:
                             correct_command = false;
                     }
+                    break;
+
+                case 'x':
+                    done = true;   // Added to finish the program
                     break;
 
                 default:

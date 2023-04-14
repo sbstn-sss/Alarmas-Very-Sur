@@ -53,35 +53,43 @@ public class Stage1 {
 
     //interaccion usuario
     public void executeUserInteraction (Scanner in, PrintStream out){
-        char command, parameter;
+        String command;
+        char parameter;
+        int i;
         int step = 0;
+
         boolean correct_command = true;
         boolean done = false;
         printHeader(out);
         while (!done) {
-            //System.out.println(step);
+
             if (correct_command)
                 printState(step++, out); // se podria agregar un try que haga que al ingresar un comando invalido, no se ejecute print state.
-
             correct_command = true;
-            command = in.next().charAt(0);
-            switch (command) {
+
+            command = in.next();
+
+            switch (command.charAt(0)) {
                 case 'd':
+                    i = Integer.parseInt(command.substring(1));
                     parameter = in.next().charAt(0);
+
                     if (parameter == 'o') {
-                        doors.get(0).open();
+                        doors.get(i).open();
                     } else if (parameter == 'c'){
-                        doors.get(0).close();
+                        doors.get(i).close();
                     } else{
                         correct_command = false;
                     }
                     break;
                 case 'w': // caso 0
+                    i = Integer.parseInt(command.substring(1));
                     parameter = in.next().charAt(0);
+
                     if (parameter == 'o') {
-                        windows.get(0).open();
+                        windows.get(i).open();
                     } else if (parameter == 'c'){
-                        windows.get(0).close();
+                        windows.get(i).close();
                     } else{
                         correct_command = false;
                     }
