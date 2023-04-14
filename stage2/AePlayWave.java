@@ -35,9 +35,9 @@ public class AePlayWave extends Thread {
 	}
 	private URL m_url;
 	private Position curPosition;
-	//private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb
+	private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb
 	//
-	private final int EXTERNAL_BUFFER_SIZE = 10485760;
+	//private final int EXTERNAL_BUFFER_SIZE = 10485760;
 	// borrar
 	private boolean done=false;
 	enum Position {

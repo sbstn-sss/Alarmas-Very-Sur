@@ -74,7 +74,7 @@ public class Stage2 {
         for (int i = 0; i < windows.size(); i++)
             out.print("\t" + windows.get(i).getState());
 
-        out.print("\t");out.print(0);out.print("    ");// completar para siren
+        out.print("\t");out.print(siren.getState());out.print("    ");// completar para siren
         out.print("\t");out.print(central.getState()); // completar para central
 
         out.println();
@@ -102,9 +102,13 @@ public class Stage2 {
                     parameter = in.next().charAt(0);
                     if (parameter == 'o') {
                         doors.get(i).open();
+                        if (central.getState() == 1)
+                            siren.play();
 
                     } else if (parameter == 'c'){
                         doors.get(i).close();
+                        if (central.getState() == 1)
+                            siren.stop();
 
                     } else{
                         correct_command = false;
@@ -116,9 +120,13 @@ public class Stage2 {
                     parameter = in.next().charAt(0);
                     if (parameter == 'o') {
                         windows.get(i).open();
+                        if (central.getState() == 1)
+                            siren.play();
 
                     } else if (parameter == 'c'){
                         windows.get(i).close();
+                        if (central.getState() == 1)
+                            siren.stop();
 
                     } else{
                         correct_command = false;
@@ -129,7 +137,7 @@ public class Stage2 {
                     parameter = in.next().charAt(0);
 
                     boolean state_z0 = central.checkZoneV2(zones.get(0));
-                    boolean state_z1 = central.checkZoneV2(zones.get(1));
+                    boolean state_z1 = central.checkZoneV2(zones.get(1)); // para usar esto en abrir puerta y ventanas , colocar estas variables mas arriba
 
                     switch (parameter) {
                         case 'a':
@@ -183,13 +191,7 @@ public class Stage2 {
                             correct_command = false;
                     }
                     break;
-                //borrar
-                case 'p':
-                    siren.play();
-                    break;
-                case 's':
-                    siren.stop();
-                    break;
+
                 default:
                     correct_command = false;
             }
