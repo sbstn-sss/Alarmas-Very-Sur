@@ -38,16 +38,12 @@ public class Stage3 {
 
         int numPirs = in.nextInt();
 
-        for(int i=0;i<numPirs;i++){
 
-            //reading <x> <y> <direction_angle> <sensing_angle> <sensing_range>
+
+        for(int i=0;i<numPirs;i++){
             in.nextLine();
-            int x = in.nextInt();
-            int y = in.nextInt();
-            int direction_angle = in.nextInt();
-            int sensing_angle = in.nextInt();
-            int sensing_range = in.nextInt();
-            pirs.add(new Pir(x,y,direction_angle,sensing_angle,sensing_range));
+            //reading <x> <y> <direction_angle> <sensing_angle> <sensing_range>
+            pirs.add(new Pir(in.nextFloat(), in.nextFloat() , in.nextFloat(), in.nextFloat(), in.nextFloat()));
 
         }
 
@@ -152,8 +148,9 @@ public class Stage3 {
                     }
                     break;
                 case 'c':
-                    float x=Integer.parseInt(command.substring(1));
-                    float y=Integer.parseInt(command.substring(1));
+                    float x= 0;
+                    float y= 0;
+
                     persons.add(new persona(x, y));
                     break;
 
@@ -173,11 +170,12 @@ public class Stage3 {
                     if(parameter =='o'){
                         persons.get(i).oeste();;
                     }
-
+                    System.out.print("(");System.out.print(persons.get(i).PerPosX());System.out.print(", ");System.out.print(persons.get(i).PerPosY());System.out.print(")");
                     for(int pos=0;pos<pirs.size();pos++){
                         if(pirs.get(pos).getDistance(persons.get(i).PerPosX(),persons.get(i).PerPosY())){
                             if(pirs.get(pos).getAngle(persons.get(i).PerPosX(),persons.get(i).PerPosY())){
                                 siren.play();
+                                System.out.println("sirena sonando xd");
                             }
                         }
                     }
