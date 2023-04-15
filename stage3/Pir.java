@@ -1,18 +1,18 @@
 public class Pir {
     //atributos
-    private State state;
+    //private State state;
 
-    private int x;
+    private float x;
 
-    private int y;
+    private float y;
 
-    private int direction_angle;
+    private float direction_angle;
 
-    private int sensing_angle;
+    private float sensing_angle;
 
-    private int sensing_range;
+    private float sensing_range;
     //constructor
-    public Pir(int x,int y,int direction_angle,int sensing_angle,int sensing_range){
+    public Pir(float x,float y,float direction_angle,float sensing_angle,float sensing_range){
         this.x = x;
         this.y = y;
         this.direction_angle =direction_angle;
@@ -21,26 +21,26 @@ public class Pir {
 
     }
 
-    public void SetX(int x){
+    public void SetX(float x){
         this.x =x;
     }
 
-    public  void SetY(int y){
+    public  void SetY(float y){
         this.y = y;
     }
 
-    public int GetX(){
+    public float GetX(){
         return x;
     }
 
-    public  int GetY(){
+    public  float GetY(){
         return y;
     }
 
-    public  boolean getDistance(int a,int b){
+    public  boolean getDistance(float a,float b){
         double distan =0;
 
-        distan = Math.sqrt((x -a)^2 + (y-b)^2);
+        distan = Math.sqrt((x -a)*(x-a) + (y-b)*(y-b));
         if(distan > sensing_range){
             return false;
         }else{
@@ -49,7 +49,7 @@ public class Pir {
 
     }
 
-    public boolean getAngle(int a,int b){
+    public boolean getAngle(Float a,Float b){
         double angle =0;
 
         angle = Math.atan2(x-a,y-b);

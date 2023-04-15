@@ -11,11 +11,13 @@ public class Stage2 {
     private ArrayList<Pir> pirs;
     private Central central;
     private Siren siren;
+    private ArrayList<persona> persons;
     //constructor
     public Stage2() {
         doors = new ArrayList<Door>();
         windows = new ArrayList<Window>();
         pirs = new ArrayList<Pir>();
+        persons = new ArrayList<persona>();
     }
     //metodos
     public void readConfiguration(Scanner in){
@@ -149,9 +151,38 @@ public class Stage2 {
                             correct_command = false;
                     }
                     break;
+                case 'c':
+                    float x=Integer.parseInt(command.substring(1));
+                    float y=Integer.parseInt(command.substring(1));
+                    persons.add(new persona(x, y));
+                    break;
+
                 //borrar
                 case 'p':
-                    siren.play();
+                    i = Integer.parseInt(command.substring(1));
+                    parameter = in.next().charAt(0);
+                    if(parameter =='n'){
+                        persons.get(i).norte();
+                    }
+                    if(parameter =='s'){
+                        persons.get(i).sur();
+                    }
+                    if(parameter =='e'){
+                        persons.get(i).este();;
+                    }
+                    if(parameter =='o'){
+                        persons.get(i).oeste();;
+                    }
+
+                    for(int pos=0;pos<pirs.size();pos++){
+                        if(pirs.get(pos).getDistance(persons.get(i).PerPosX(),persons.get(i).PerPosY())){
+                            if(pirs.get(pos).getAngle(persons.get(i).PerPosX(),persons.get(i).PerPosY())){
+                                siren.play();
+                            }
+                        }
+                    }
+
+                    //siren.play();
                     break;
                 case 's':
                     siren.stop();
