@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Stage2 {
+public class Stage3 {
     //atributos
     private ArrayList<Door> doors;
     private ArrayList<Window> windows;
@@ -13,7 +13,7 @@ public class Stage2 {
     private Siren siren;
     private ArrayList<persona> persons;
     //constructor
-    public Stage2() {
+    public Stage3() {
         doors = new ArrayList<Door>();
         windows = new ArrayList<Window>();
         pirs = new ArrayList<Pir>();
@@ -201,7 +201,7 @@ public class Stage2 {
         }
         Scanner in = new Scanner(new File(args[0]));
         //System.out.println("File: " + args[0]);
-        Stage2 stage = new Stage2();
+        Stage3 stage = new Stage3();
         stage.readConfiguration(in);
         stage.executeUserInteraction(new Scanner(System.in), new PrintStream(new File("output.csv")));
     }
