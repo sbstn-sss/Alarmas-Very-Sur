@@ -57,7 +57,7 @@ public class Pir{
 
     public  boolean isInAngle(float a, float b){
 
-        float angle_rad = (float) Math.atan((a - x) / (b - y));
+        float angle_rad = (float) Math.atan2((b - y) , (a - x));
         float angle = (angle_rad * 180)/ ((float) Math.PI) ;
 
         float cota_inf = direction_angle - sensing_angle;

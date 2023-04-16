@@ -155,7 +155,26 @@ public class Stage3 {
                     float x= in.nextFloat();
                     float y= in.nextFloat();
 
-                    persons.add(new persona(x, y));
+                    persona p = new persona(x,y);
+
+                    persons.add(p);
+
+                    for(int j = 0;j < pirs.size(); j++){
+                        Pir pir_actual = pirs.get(j);
+
+                        boolean condicion_distancia = pir_actual.isNear( p.PerPosX() , p.PerPosY()) ;
+                        boolean condicion_angulo = pir_actual.isInAngle( p.PerPosX() , p.PerPosY() );
+                        if( condicion_distancia && condicion_angulo){
+                            siren.play();
+                            System.out.println("sirena sonando xd");
+
+                        }else{
+                            if (siren.getState() == 1){
+                                siren.stop();
+                                System.out.println("sirena sonandon't xd");
+                            }
+                        }
+                    }
                     break;
 
                 //borrar
