@@ -105,9 +105,9 @@ public class Stage2 {
                     if (parameter == 'o') {
                         doors.get(i).open();
                         if (central.getState() == 1)
-                            if(siren.getState() == 0)
+                            if(siren.getState() == 0) {
                                 siren.play();
-
+                            }
                     } else if (parameter == 'c'){
                         doors.get(i).close();
                         if (central.getState() == 1)

@@ -39,11 +39,13 @@ public class Stage3 {
         int numPirs = in.nextInt();
 
 
-
         for(int i=0;i<numPirs;i++){
             in.nextLine();
             //reading <x> <y> <direction_angle> <sensing_angle> <sensing_range>
             pirs.add(new Pir(in.nextFloat(), in.nextFloat() , in.nextFloat(), in.nextFloat(), in.nextFloat()));
+// delete this
+            System.out.print("pos pir: (");System.out.print(pirs.get(i).getX());System.out.print(", ");System.out.print(pirs.get(i).getY());System.out.print(")"); System.out.println();
+
 
             central.addNewSensorPir(pirs.get(i).getSensor());
 
@@ -150,8 +152,8 @@ public class Stage3 {
                     }
                     break;
                 case 'c':
-                    float x= 0;
-                    float y= 0;
+                    float x= in.nextFloat();
+                    float y= in.nextFloat();
 
                     persons.add(new persona(x, y));
                     break;
@@ -172,12 +174,21 @@ public class Stage3 {
                     if(parameter =='o'){
                         persons.get(i).oeste();;
                     }
-                    System.out.print("(");System.out.print(persons.get(i).PerPosX());System.out.print(", ");System.out.print(persons.get(i).PerPosY());System.out.print(")");
-                    for(int pos=0;pos<pirs.size();pos++){
-                        if(pirs.get(pos).IsNear(persons.get(i).PerPosX(),persons.get(i).PerPosY())){
-                            if(pirs.get(pos).isInAngle(persons.get(i).PerPosX(),persons.get(i).PerPosY())){
-                                siren.play();
-                                System.out.println("sirena sonando xd");
+                    System.out.print("(");System.out.print(persons.get(i).PerPosX());System.out.print(", ");System.out.print(persons.get(i).PerPosY());System.out.print(")"); System.out.println();
+
+                    for(int j = 0;j < pirs.size(); j++){
+                        Pir pir_actual = pirs.get(j);
+
+                        boolean condicion_distancia = pir_actual.isNear( persons.get(i).PerPosX() , persons.get(i).PerPosY()) ;
+                        boolean condicion_angulo = pir_actual.isInAngle( persons.get(i).PerPosX() , persons.get(i).PerPosY() );
+                        if( condicion_distancia && condicion_angulo){
+                            siren.play();
+                            System.out.println("sirena sonando xd");
+
+                        }else{
+                            if (siren.getState() == 1){
+                                siren.stop();
+                                System.out.println("sirena sonandon't xd");
                             }
                         }
                     }

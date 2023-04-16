@@ -1,17 +1,11 @@
 public class Pir{
     //atributos
     private Sensor sensor;
-
     private State state;
-
-    private float x;
-
+    private float x; // crear clase posicion para esto
     private float y;
-
     private float direction_angle;
-
     private float sensing_angle;
-
     private float sensing_range;
     //constructor
     public Pir(float x,float y,float direction_angle,float sensing_angle,float sensing_range){
@@ -25,55 +19,54 @@ public class Pir{
 
     }
 
-    public void SetX(float x){
+    public void setX(float x){
         this.x =x;
     }
 
-    public  void SetY(float y){
+    public  void setY(float y){
         this.y = y;
     }
 
-    public float GetX(){
+    public float getX(){
         return x;
     }
 
-    public  float GetY(){
+    public  float getY(){
         return y;
     }
 
-    public  double getDistance(float a,float b){
-        double distan =0;
-
-        distan = Math.sqrt((x -a)*(x-a) + (y-b)*(y-b));
-        return distan;
-    }
-
-    public void CloseP(){
+    public void closeP(){
         state = State.CLOSE;
     }
 
-    public void OpenP(){
+    public void openP(){
         state = State.OPEN;
     }
 
-    public double getAngle(Float a,Float b){
-        double angle =0;
+    public boolean isNear(float a, float b){
+        float distance = (float) Math.sqrt( Math.pow((x - a), 2) + Math.pow((y - b), 2));;
 
-        angle = Math.atan2(x-a,y-b);
-        return angle;
+        System.out.print("distancia persona - sensor: "); System.out.print(distance); System.out.println();
 
-    }
-
-    public boolean IsNear(float a,float b){
-        if(getDistance(a,b)>sensing_range){
+        if(distance > sensing_range){
             return false;
         }else{
             return true;
         }
     }
 
-    public  boolean isInAngle(float a,float b){
-        if(getAngle(a,b)>=direction_angle && getAngle(a,b)<=direction_angle+sensing_angle){
+    public  boolean isInAngle(float a, float b){
+
+        float angle_rad = (float) Math.atan((a - x) / (b - y));
+        float angle = (angle_rad * 180)/ ((float) Math.PI) ;
+
+        float cota_inf = direction_angle - sensing_angle;
+        float cota_sup = direction_angle + sensing_angle;
+
+        System.out.print("cota inf: "); System.out.print(cota_inf); System.out.print(", angulo: ");System.out.print(angle);System.out.print(", cota sup: ");System.out.print(cota_sup);System.out.println();
+
+
+        if( angle >= cota_inf && angle <= cota_sup ){
             return true;
         }else {
             return false;
