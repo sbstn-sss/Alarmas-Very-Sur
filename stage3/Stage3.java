@@ -45,6 +45,8 @@ public class Stage3 {
             //reading <x> <y> <direction_angle> <sensing_angle> <sensing_range>
             pirs.add(new Pir(in.nextFloat(), in.nextFloat() , in.nextFloat(), in.nextFloat(), in.nextFloat()));
 
+            central.addNewSensorPir(pirs.get(i).getSensor());
+
         }
 
 
@@ -172,8 +174,8 @@ public class Stage3 {
                     }
                     System.out.print("(");System.out.print(persons.get(i).PerPosX());System.out.print(", ");System.out.print(persons.get(i).PerPosY());System.out.print(")");
                     for(int pos=0;pos<pirs.size();pos++){
-                        if(pirs.get(pos).getDistance(persons.get(i).PerPosX(),persons.get(i).PerPosY())){
-                            if(pirs.get(pos).getAngle(persons.get(i).PerPosX(),persons.get(i).PerPosY())){
+                        if(pirs.get(pos).IsNear(persons.get(i).PerPosX(),persons.get(i).PerPosY())){
+                            if(pirs.get(pos).isInAngle(persons.get(i).PerPosX(),persons.get(i).PerPosY())){
                                 siren.play();
                                 System.out.println("sirena sonando xd");
                             }

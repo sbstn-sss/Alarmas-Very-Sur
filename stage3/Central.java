@@ -3,12 +3,15 @@ import java.util.ArrayList;
 public class Central {
     //atributos
     private ArrayList<Sensor> zone0;
+
+    private ArrayList<Sensor> zone2;
     private boolean isArmed;
     private Siren siren;
 
     //constructor
     public Central(){
         zone0 = new ArrayList<Sensor>();
+        zone2 = new ArrayList<Sensor>();
         isArmed = false;
         siren = null;
     }
@@ -25,6 +28,8 @@ public class Central {
     public void addNewSensor(Sensor s){
         zone0.add(s);
     }
+
+    public  void addNewSensorPir(Sensor s){zone2.add(s);}
     public void checkZone(){ // probablemente hay que agregar un parametro zone
         //recorer sensores
         boolean armable = true;
