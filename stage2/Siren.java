@@ -19,12 +19,18 @@ public class Siren {
     //metodos
     public void play(){
         isSounding = true;
+
+        System.out.println("La sirena esta sonando");
+
         aWave= new AePlayWave(dir);
         aWave.start();
     }
     public void stop(){
         isSounding = false;
         aWave.stopSounding();
+
+        System.out.println("La sirena dejo de sonar");
+
     }
     public String getHeader() {
         return "Siren";
