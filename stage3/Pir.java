@@ -5,7 +5,7 @@ public class Pir{
     private float x; // crear clase posicion para esto
     private float y;
     private float direction_angle;
-    private float sensing_angle;
+    private float sensing_angle; //
     private float sensing_range;
     //constructor
     public Pir(float x,float y,float direction_angle,float sensing_angle,float sensing_range){
@@ -13,8 +13,8 @@ public class Pir{
         state = state.OPEN;
         this.x = x;
         this.y = y;
-        this.direction_angle =direction_angle;
-        this.sensing_angle=sensing_angle;
+        this.direction_angle = direction_angle;
+        this.sensing_angle = sensing_angle;
         this.sensing_range = sensing_range;
 
     }
@@ -60,8 +60,8 @@ public class Pir{
         float angle_rad = (float) Math.atan2((b - y) , (a - x));
         float angle = (angle_rad * 180)/ ((float) Math.PI) ;
 
-        float cota_inf = direction_angle - sensing_angle;
-        float cota_sup = direction_angle + sensing_angle;
+        float cota_inf = direction_angle - (sensing_angle / 2);
+        float cota_sup = direction_angle + (sensing_angle / 2);
 
         System.out.print("cota inf: "); System.out.print(cota_inf); System.out.print(", angulo: ");System.out.print(angle);System.out.print(", cota sup: ");System.out.print(cota_sup);System.out.println();
 
