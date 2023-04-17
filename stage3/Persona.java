@@ -1,9 +1,9 @@
-public class persona {
+public class Persona {
 
     private float posX; // se puede crear una clase posicion.
     private float posY;
 
-    public persona(float x,float y){
+    public Persona(float x,float y){
         this.posX=x;
         this.posY=y;
         //delete

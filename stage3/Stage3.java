@@ -11,13 +11,13 @@ public class Stage3 {
     private ArrayList<Pir> pirs;
     private Central central;
     private Siren siren;
-    private ArrayList<persona> persons;
+    private ArrayList<Persona> persons;
     //constructor
     public Stage3() {
         doors = new ArrayList<Door>();
         windows = new ArrayList<Window>();
         pirs = new ArrayList<Pir>();
-        persons = new ArrayList<persona>();
+        persons = new ArrayList<Persona>();
     }
     //metodos
     public void readConfiguration(Scanner in){
@@ -47,7 +47,8 @@ public class Stage3 {
             System.out.print("pos pir: (");System.out.print(pirs.get(i).getX());System.out.print(", ");System.out.print(pirs.get(i).getY());System.out.print(")"); System.out.println();
 
 
-            central.addNewSensorPir(pirs.get(i).getSensor());
+            central.addNewSensorPir(pirs.get(i)/*.getSensor()*/);
+
 
         }
 
@@ -67,6 +68,9 @@ public class Stage3 {
 
         for (int i = 0; i < windows.size(); i++)
             out.print("\t" + windows.get(i).getHeader());
+
+        for(int i = 0; i < pirs.size(); i++ )
+            out.print("\t" + pirs.get(i).getHeader());
 
         out.print("\t" + siren.getHeader());
         out.print("\t" + central.getHeader());
@@ -135,14 +139,53 @@ public class Stage3 {
 
                 case 'k':
                     parameter = in.next().charAt(0);
+
+
+                    boolean state_z0 = central.checkZone();
+                    boolean state_z2 = central.checkZoneV2();
+
+
                     switch (parameter) {
                         case 'a':
-                            //checkzone incluye armado
-                            central.checkZone();//todo, todas las puertas y ventanas deben estar cerradas
-                            break;
+                            if ( state_z0 && state_z2 ) { // si ambas son armables se arma
+                                if(central.getState() == 0) {
+                                    central.arm();
+                                    System.out.println("Se ha armado la alarma");
+                                }else{
+                                    System.out.println("La alarma ya esta armado");
+                                }
+                            }else{
+                                //System.out.println("No se ha podido armar la alarma por las zonas:");
+                                if(!state_z0) {
+                                    System.out.println(0);
+                                }
+                                if (!state_z2)
+                                    System.out.println(1);
+
+                            }
+
+                       break;
+
+
+
+
                         case 'p':
-                            System.out.println("no se");
-                            //perimetro
+
+                            if ( state_z0) { // se arma solamente las puertas y ventanas
+                                if(central.getState() == 0) {
+                                    central.arm();
+                                    System.out.println("Se ha armado la alarma");
+                                }else{
+                                    System.out.println("La alarma ya esta armado");
+                                }
+                            }else{
+                                System.out.println("No se ha podido armar la alarma por las zonas:");
+                                System.out.println(0);
+                                System.out.println();
+                            }
+
+
+
                             break;
                         case 'b':
                             central.disarm();
@@ -155,7 +198,7 @@ public class Stage3 {
                     float x= in.nextFloat();
                     float y= in.nextFloat();
 
-                    persona p = new persona(x,y);
+                    Persona p = new Persona(x,y);
 
                     persons.add(p);
 

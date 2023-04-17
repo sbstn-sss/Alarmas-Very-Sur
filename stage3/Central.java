@@ -30,21 +30,48 @@ public class Central {
     }
 
     public  void addNewSensorPir(Sensor s){zone2.add(s);}
-    public void checkZone(){ // probablemente hay que agregar un parametro zone
+    public boolean checkZone(){ // probablemente hay que agregar un parametro zone   //se arman las puertas y ventanas
         //recorer sensores
         boolean armable = true;
         for (int i = 0; i < zone0.size(); i ++){
             Sensor sensor_actual = zone0.get(i);
-            System.out.println(sensor_actual.getState()); // borrar luego
+            //System.out.println(sensor_actual.getState()); // borrar luego
             if (sensor_actual.getState() == SwitchState.CLOSE)
                 armable = false;
         }
         if (armable) {
-            arm();
-            System.out.println("Se ha armado la zona");
-        }else
-            System.out.println("No se puede armar la zona"); // ver que pasa con el numero
+            //arm();
+            //System.out.println("Se ha armado la zona");
+            return  true;
+
+        }else {
+            //System.out.println("No se puede armar la zona"); // ver que pasa con el numero
+            return  false;
+
+        }
     }
+
+    public boolean checkZoneV2(){ // probablemente hay que agregar un parametro zone   // se arman los pir
+        //recorer sensores
+        boolean armable = true;
+        for (int i = 0; i < zone2.size(); i ++){
+            Sensor sensor_actual = zone2.get(i);
+            //System.out.println(sensor_actual.getState()); // borrar luego
+            if (sensor_actual.getState() == SwitchState.CLOSE)
+                armable = false;
+        }
+        if (armable) {
+            //arm();
+            //System.out.println("Se ha armado la zona");
+            return true;
+
+        }else {
+            //System.out.println("No se puede armar la zona"); // ver que pasa con el numero
+            return false;
+        }
+    }
+
+
     public String getHeader(){
         return "Central";
     }
