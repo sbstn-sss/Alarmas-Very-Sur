@@ -1,9 +1,9 @@
-public class persona {
+public class Persona {
 
     private float posX; // se puede crear una clase posicion.
     private float posY;
 
-    public persona(float x,float y){
+    public Persona(float x, float y){
         this.posX=x;
         this.posY=y;
         //delete
@@ -11,26 +11,26 @@ public class persona {
 
     }
 
-    public void norte(){
+    public void arriba(){
 
         posY +=0.5;
     }
-    public void sur(){
+    public void abajo(){
         posY -=0.5;
     }
-    public void este(){
+    public void derecha(){
 
         posX +=0.5;
     }
-    public void oeste(){
+    public void izquierda(){
 
         posX -=0.5;
     }
 
-    public float PerPosX(){
+    public float getX(){
         return posX;
     }
-    public float PerPosY(){
+    public float getY(){
         return posY;
     }
 
