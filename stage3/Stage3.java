@@ -47,7 +47,7 @@ public class Stage3 {
             System.out.print("pos pir: (");System.out.print(pirs.get(i).getX());System.out.print(", ");System.out.print(pirs.get(i).getY());System.out.print(")"); System.out.println();
 
 
-            central.addNewSensorPir(pirs.get(i).getSensor());
+            central.addNewSensorPir(pirs.get(i));
 
         }
 
@@ -68,6 +68,9 @@ public class Stage3 {
         for (int i = 0; i < windows.size(); i++)
             out.print("\t" + windows.get(i).getHeader());
 
+        for (int i = 0; i < pirs.size(); i++)
+            out.print("\t" + pirs.get(i).getHeader());
+
         out.print("\t" + siren.getHeader());
         out.print("\t" + central.getHeader());
 
@@ -81,6 +84,9 @@ public class Stage3 {
 
         for (int i = 0; i < windows.size(); i++)
             out.print("\t" + windows.get(i).getState());
+
+        for (int i = 0; i < pirs.size(); i++)
+            out.print("\t" + pirs.get(i).getStateV2());
 
         out.print("\t");out.print(0);out.print("    ");// completar para siren
         out.print("\t");out.print(central.getState()); // completar para central
@@ -135,15 +141,51 @@ public class Stage3 {
 
                 case 'k':
                     parameter = in.next().charAt(0);
+
+                    boolean state_z0 = central.checkZone();// Puertas y ventanas
+                    boolean state_z2 = central.checkZoneV2();//Pirs
+
                     switch (parameter) {
                         case 'a':
-                            //checkzone incluye armado
-                            central.checkZone();//todo, todas las puertas y ventanas deben estar cerradas
+
+                            if ( state_z0) { //pir
+                                if(central.getState() == 0) {
+                                    central.arm();
+                                    System.out.println("Se ha armado la alarma");
+                                }else{
+                                    System.out.println("La alarma ya esta armada");
+                                }
+                            }else{
+                                System.out.println("No se ha podido armar la alarma por las zonas:");
+                                if(!state_z0) {
+                                    System.out.println(0);
+                                }
+                                if (!state_z2)
+                                    System.out.println(1);
+                                System.out.println();
+                            }
+
                             break;
                         case 'p':
-                            System.out.println("no se");
-                            //perimetro
+
+                            if ( state_z0) {
+                                if(central.getState() == 0) {
+                                    central.arm();
+                                    System.out.println("Se ha armado la alarma");
+                                }else{
+                                    System.out.println("La alarma ya esta armada");
+                                }
+                            }else{
+                                System.out.println("No se ha podido armar la alarma por las zonas:");
+                                if(!state_z0) {
+                                    System.out.println(0);
+                                }
+                                if (!state_z2)
+                                    System.out.println(1);
+                                System.out.println();
+                            }
                             break;
+
                         case 'b':
                             central.disarm();
                             break;

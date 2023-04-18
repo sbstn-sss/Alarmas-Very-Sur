@@ -11,9 +11,11 @@ public class Sensor {
     }
 
     //metodos
+
     public SwitchState getState(){
         return state;
     }
+
     protected void setState(SwitchState s) {
         this.state = s;
     }

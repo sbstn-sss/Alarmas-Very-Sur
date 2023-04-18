@@ -1,4 +1,4 @@
-public class Pir{
+public class Pir extends Sensor{
     //atributos
     private Sensor sensor;
     private State state;
@@ -7,6 +7,11 @@ public class Pir{
     private float direction_angle;
     private float sensing_angle; //
     private float sensing_range;
+    private final int id;
+    private static int nextId;
+    static {
+        nextId = 0;
+    }
     //constructor
     public Pir(float x,float y,float direction_angle,float sensing_angle,float sensing_range){
         sensor = new Sensor();
@@ -17,6 +22,21 @@ public class Pir{
         this.sensing_angle = sensing_angle;
         this.sensing_range = sensing_range;
 
+    }
+    {
+        id = nextId++;
+    }
+
+    public String getHeader(){
+        return "P"+id;
+    }
+
+    public int getStateV2(){
+        if(state == State.OPEN)
+            return 1;
+        else{
+            return 0;
+        }
     }
 
     public void setX(float x){
