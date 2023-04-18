@@ -86,6 +86,9 @@ public class Stage3 {
         for (int i = 0; i < windows.size(); i++)
             out.print("\t" + windows.get(i).getState());
 
+        for(int i = 0; i < pirs.size(); i++ )
+            out.print("\t" + pirs.get(i).getStateV2());
+
         out.print("\t");out.print(0);out.print("    ");// completar para siren
         out.print("\t");out.print(central.getState()); // completar para central
 

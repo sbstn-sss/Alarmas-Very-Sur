@@ -4,10 +4,14 @@ public class Pir extends Sensor{
     private State state;
     private float x; // crear clase posicion para esto
     private float y;
-    private  final int id; //corregir esto para printearlo
     private float direction_angle;
     private float sensing_angle; //
     private float sensing_range;
+    private  final int id;
+    private static int nextId;
+    static {
+        nextId = 0;
+    }//corregir
     //constructor
 
 
@@ -21,7 +25,17 @@ public class Pir extends Sensor{
         this.sensing_range = sensing_range;
 
     }
+    {
+        id = nextId ++;
+    }
 
+    public int getStateV2(){
+        if(state == State.OPEN)
+            return 1;
+        else{
+            return 0;
+        }
+    }
 
     public void setX(float x){
         this.x =x;
@@ -48,7 +62,7 @@ public class Pir extends Sensor{
     }
 
     public String getHeader(){
-        return "w"+id;
+        return "P"+id;
     }
 
     public boolean isNear(float a, float b){
