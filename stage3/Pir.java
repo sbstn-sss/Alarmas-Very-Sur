@@ -6,7 +6,7 @@ public class Pir extends Sensor{
     private float y;
     private  final int id; //corregir esto para printearlo
     private float direction_angle;
-    private float sensing_angle;
+    private float sensing_angle; //
     private float sensing_range;
     //constructor
 
@@ -16,8 +16,8 @@ public class Pir extends Sensor{
         state = state.OPEN;
         this.x = x;
         this.y = y;
-        this.direction_angle =direction_angle;
-        this.sensing_angle=sensing_angle;
+        this.direction_angle = direction_angle;
+        this.sensing_angle = sensing_angle;
         this.sensing_range = sensing_range;
 
     }
@@ -68,8 +68,8 @@ public class Pir extends Sensor{
         float angle_rad = (float) Math.atan2((b - y) , (a - x));
         float angle = (angle_rad * 180)/ ((float) Math.PI) ;
 
-        float cota_inf = direction_angle - sensing_angle;
-        float cota_sup = direction_angle + sensing_angle;
+        float cota_inf = direction_angle - (sensing_angle / 2);
+        float cota_sup = direction_angle + (sensing_angle / 2);
 
         System.out.print("cota inf: "); System.out.print(cota_inf); System.out.print(", angulo: ");System.out.print(angle);System.out.print(", cota sup: ");System.out.print(cota_sup);System.out.println();
 

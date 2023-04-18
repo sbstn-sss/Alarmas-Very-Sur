@@ -112,7 +112,8 @@ public class Stage2 {
                         doors.get(i).close();
                         if (central.getState() == 1)
                             if (central.checkZoneV2(zones.get(0)) && central.checkZoneV2(zones.get(1)))
-                                siren.stop();
+                                if (siren.getState() == 1)
+                                    siren.stop();
 
                     } else{
                         correct_command = false;
@@ -132,7 +133,8 @@ public class Stage2 {
                         windows.get(i).close();
                         if (central.getState() == 1)
                             if (central.checkZoneV2(zones.get(0)) && central.checkZoneV2(zones.get(1)))
-                                siren.stop();
+                                if (siren.getState() == 1)
+                                    siren.stop();
 
                     } else{
                         correct_command = false;
@@ -152,7 +154,7 @@ public class Stage2 {
                                     central.arm();
                                     System.out.println("Se ha armado la alarma");
                                 }else{
-                                    System.out.println("La alarma ya esta armado");
+                                    System.out.println("La alarma ya esta armada");
                                 }
                             }else{
                                 System.out.println("No se ha podido armar la alarma por las zonas:");
