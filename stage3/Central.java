@@ -2,16 +2,14 @@ import java.util.ArrayList;
 
 public class Central {
     //atributos
-    private ArrayList<Sensor> zone0;
-
-    private ArrayList<Sensor> zone2;
+    private ArrayList<ArrayList<Sensor>> zones;
     private boolean isArmed;
     private Siren siren;
 
     //constructor
     public Central(){
-        zone0 = new ArrayList<Sensor>();
-        zone2 = new ArrayList<Sensor>();
+        //zone0 = new ArrayList<Sensor>();
+        zones = null;
         isArmed = false;
         siren = null;
     }
@@ -21,30 +19,42 @@ public class Central {
     }
     public void disarm() {
         isArmed = false;
+        if (siren.getState() == 1)
+            siren.stop();
     }
     public void setSiren(Siren s) {
         siren = s;
+    }
+    public void setZones(ArrayList<ArrayList<Sensor>> z){
+        zones = z;
+    }
+
+    public ArrayList<Sensor> getZone(int zone_id){ // no usado de momento
+        return zones.get(zone_id);
     }
     public void addNewSensor(Sensor s){
         zone0.add(s);
     }
 
-    public  void addNewSensorPir(Sensor s){zone2.add(s);}
-    public void checkZone(){ // probablemente hay que agregar un parametro zone
+    public void addNewSensor(int zone_id, Sensor s){
+        zones.get(zone_id).add(s);
+    }
+    public boolean checkZone(int zone_id){
         //recorer sensores
+        ArrayList<Sensor> zone = zones.get(zone_id);
         boolean armable = true;
-        for (int i = 0; i < zone0.size(); i ++){
-            Sensor sensor_actual = zone0.get(i);
-            System.out.println(sensor_actual.getState()); // borrar luego
-            if (sensor_actual.getState() == SwitchState.CLOSE)
+        for (int i = 0; i < zone.size(); i ++){
+            Sensor sensor_actual = zone.get(i);
+            //System.out.println(sensor_actual.getState()); // borrar luego
+            if (sensor_actual.getState() == SwitchState.OPEN)
                 armable = false;
         }
-        if (armable) {
-            arm();
-            System.out.println("Se ha armado la zona");
-        }else
-            System.out.println("No se puede armar la zona"); // ver que pasa con el numero
+        if (armable)
+            return true;
+        else
+            return false;
     }
+
     public String getHeader(){
         return "Central";
     }

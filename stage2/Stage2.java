@@ -33,7 +33,7 @@ public class Stage2 {
         for (int i = 0; i < numDoors; i++){
             doors.add(new Door());
             if (i == 0)
-                central.addNewSensor(0, doors.get(i).getMagneticSensor()); // es private asi que xd
+                central.addNewSensor(0, doors.get(i).getMagneticSensor());
             else
                 central.addNewSensor(1, doors.get(i).getMagneticSensor()); // zona 1
         }
@@ -41,7 +41,7 @@ public class Stage2 {
         for (int i = 0; i < numWindows; i++){
             windows.add(new Window());
 
-            central.addNewSensor(1 ,windows.get(i).getMagneticSensor());// es private asi que xd
+            central.addNewSensor(1 ,windows.get(i).getMagneticSensor());//
         }
 
         in.nextLine();
@@ -149,16 +149,16 @@ public class Stage2 {
                                     System.out.println("La alarma ya esta armada");
                                 }
                             }else{
-                                System.out.println("No se ha podido armar la alarma por las zonas:");
+                                System.out.print("No se ha podido armar la alarma por las zonas:");
                                 if(!state_z0) {
-                                    System.out.println(0);
+                                    System.out.print(" 0 ");
                                 }
                                 if (!state_z1)
-                                    System.out.println(1);
+                                    System.out.print(" 1 ");
                                 System.out.println();
                             }
-
                             break;
+
                         case 'p':
                             if ( state_z0 && state_z1 ) { // si ambas son armables se arma
                                 if(central.getState() == 0) {
@@ -176,7 +176,6 @@ public class Stage2 {
                                     System.out.println(1);
                                 System.out.println();
                             }
-
                             break;
 
                         case 'd':
@@ -187,6 +186,7 @@ public class Stage2 {
                                 System.out.println("La alarma ya esta desarmada");
                             }
                             break;
+
                         default:
                             correct_command = false;
                     }
@@ -201,7 +201,6 @@ public class Stage2 {
                 default:
                     correct_command = false;
             }
-            //central.checkZone(); // dudoso
         }
     }
 
