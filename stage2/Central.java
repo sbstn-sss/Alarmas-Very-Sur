@@ -41,7 +41,7 @@ public class Central {
         zones.get(zone_id).add(s);
     }
 
-    public boolean checkZone(int zone_id){ // probablemente hay que agregar un parametro zone
+    public boolean checkZone(int zone_id){
         //recorer sensores
         ArrayList<Sensor> zone = zones.get(zone_id);
         boolean armable = true;
