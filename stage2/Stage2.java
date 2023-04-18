@@ -16,10 +16,6 @@ public class Stage2 {
     public Stage2() {
         doors = new ArrayList<Door>();
         windows = new ArrayList<Window>();
-    }
-    //metodos
-    public void readConfiguration(Scanner in){
-        // reading <#_doors> <#_windows> <#_PIRs>
         central = new Central();
 
         //inicializando zonas
@@ -27,25 +23,30 @@ public class Stage2 {
         for (int i = 0; i < 2; i++){ // son 3 pero utilizo 2 para esta stage
             zones.add(new ArrayList<Sensor>());
         }
+        central.setZones(zones);
+    }
+    //metodos
+    public void readConfiguration(Scanner in){
+        // reading <#_doors> <#_windows> <#_PIRs>
 
         int numDoors = in.nextInt();
         for (int i = 0; i < numDoors; i++){
             doors.add(new Door());
             if (i == 0)
-                central.addNewSensor(zones.get(0), doors.get(i).getMagneticSensor()); // es private asi que xd
+                central.addNewSensor(0, doors.get(i).getMagneticSensor()); // es private asi que xd
             else
-                central.addNewSensor(zones.get(1), doors.get(i).getMagneticSensor()); // zona 1
+                central.addNewSensor(1, doors.get(i).getMagneticSensor()); // zona 1
         }
         int numWindows = in.nextInt();
         for (int i = 0; i < numWindows; i++){
             windows.add(new Window());
 
-            central.addNewSensor(zones.get(1) ,windows.get(i).getMagneticSensor());// es private asi que xd
+            central.addNewSensor(1 ,windows.get(i).getMagneticSensor());// es private asi que xd
         }
 
         in.nextLine();
         String soundFile = in.next();
-        central.setZones(zones);
+        //central.setZones(zones);
         siren = new Siren(soundFile);
         central.setSiren(siren);
         in.close();
@@ -109,11 +110,6 @@ public class Stage2 {
                                 siren.play();
                             }
                     } else if (parameter == 'c'){
-                        doors.get(i).close();
-                        if (central.getState() == 1)
-                            if (central.checkZoneV2(zones.get(0)) && central.checkZoneV2(zones.get(1)))
-                                if (siren.getState() == 1)
-                                    siren.stop();
 
                     } else{
                         correct_command = false;
@@ -131,10 +127,6 @@ public class Stage2 {
 
                     } else if (parameter == 'c'){
                         windows.get(i).close();
-                        if (central.getState() == 1)
-                            if (central.checkZoneV2(zones.get(0)) && central.checkZoneV2(zones.get(1)))
-                                if (siren.getState() == 1)
-                                    siren.stop();
 
                     } else{
                         correct_command = false;
@@ -144,8 +136,8 @@ public class Stage2 {
                 case 'k':
                     parameter = in.next().charAt(0);
 
-                    boolean state_z0 = central.checkZoneV2(zones.get(0));
-                    boolean state_z1 = central.checkZoneV2(zones.get(1)); // para usar esto en abrir puerta y ventanas , colocar estas variables mas arriba
+                    boolean state_z0 = central.checkZone(0);
+                    boolean state_z1 = central.checkZone(1); // para usar esto en abrir puerta y ventanas , colocar estas variables mas arriba
 
                     switch (parameter) {
                         case 'a':
@@ -202,6 +194,8 @@ public class Stage2 {
 
                 case 'x':
                     done = true;   // Added to finish the program
+                    if (siren.getState() == 1)
+                        siren.stop();
                     break;
 
                 default:

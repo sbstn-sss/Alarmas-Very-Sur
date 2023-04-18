@@ -7,6 +7,7 @@ public class Pir{
     private float direction_angle;
     private float sensing_angle; //
     private float sensing_range;
+
     //constructor
     public Pir(float x,float y,float direction_angle,float sensing_angle,float sensing_range){
         sensor = new Sensor();

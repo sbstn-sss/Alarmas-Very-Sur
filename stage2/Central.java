@@ -22,7 +22,8 @@ public class Central {
     }
     public void disarm() {
         isArmed = false;
-        siren.stop();
+        if (siren.getState() == 1)
+            siren.stop();
     }
     public void setSiren(Siren s) {
         siren = s;
@@ -32,25 +33,17 @@ public class Central {
         zones = z;
     }
 
-    public void addNewSensor(ArrayList<Sensor> zone, Sensor s){
-        zone.add(s);
+    public ArrayList<Sensor> getZone(int zone_id){ // no usado de momento
+        return zones.get(zone_id);
     }
-    public void checkZone(ArrayList<Sensor> zone) { // probablemente hay que agregar un parametro zone
-        //recorer sensores
-        boolean armable = true;
-        for (int i = 0; i < zone.size(); i++) {
-            Sensor sensor_actual = zone.get(i);
-            System.out.println(sensor_actual.getState()); // borrar luego
-            if (sensor_actual.getState() == SwitchState.CLOSE)
-                armable = false;
-        }
-        if (armable) {
-            arm();
 
-        }
+    public void addNewSensor(int zone_id, Sensor s){
+        zones.get(zone_id).add(s);
     }
-    public boolean checkZoneV2(ArrayList<Sensor> zone){ // probablemente hay que agregar un parametro zone
+
+    public boolean checkZone(int zone_id){ // probablemente hay que agregar un parametro zone
         //recorer sensores
+        ArrayList<Sensor> zone = zones.get(zone_id);
         boolean armable = true;
         for (int i = 0; i < zone.size(); i ++){
             Sensor sensor_actual = zone.get(i);

@@ -8,21 +8,31 @@ public class Stage3 {
     //atributos
     private ArrayList<Door> doors;
     private ArrayList<Window> windows;
-    private ArrayList<Pir> pirs;
     private Central central;
+    private ArrayList<Pir> pirs; // esto pasa a sensores
+    private ArrayList<ArrayList<Sensor>> zones;
     private Siren siren;
-    private ArrayList<persona> persons;
+    private ArrayList<Persona> persons;
     //constructor
     public Stage3() {
         doors = new ArrayList<Door>();
         windows = new ArrayList<Window>();
-        pirs = new ArrayList<Pir>();
-        persons = new ArrayList<persona>();
+        pirs = new ArrayList<Pir>(); // esto pasa a sensores
+
+        central = new Central();
+
+        //inicializando zonas
+        zones = new ArrayList<>(3); // zona 0 puerta princ, zona 1 ventanas y puertas, zona 2 PIR
+        for (int i = 0; i < 3; i++){ // son 3 pero utilizo 2 para esta stage
+            zones.add(new ArrayList<Sensor>());
+        }
+
+        persons = new ArrayList<Persona>();
     }
     //metodos
     public void readConfiguration(Scanner in){
         // reading <#_doors> <#_windows> <#_PIRs>
-        central = new Central();
+
         int numDoors = in.nextInt();
         for (int i = 0; i < numDoors; i++){
             doors.add(new Door());
@@ -37,7 +47,6 @@ public class Stage3 {
         }
 
         int numPirs = in.nextInt();
-
 
         for(int i=0;i<numPirs;i++){
             in.nextLine();
@@ -155,7 +164,7 @@ public class Stage3 {
                     float x= in.nextFloat();
                     float y= in.nextFloat();
 
-                    persona p = new persona(x,y);
+                    Persona p = new Persona(x,y);
 
                     persons.add(p);
 
@@ -181,17 +190,17 @@ public class Stage3 {
                 case 'p':
                     i = Integer.parseInt(command.substring(1));
                     parameter = in.next().charAt(0);
-                    if(parameter =='n'){
-                        persons.get(i).norte();
+                    if(parameter =='w'){
+                        persons.get(i).arriba();
                     }
                     if(parameter =='s'){
-                        persons.get(i).sur();
+                        persons.get(i).abajo();
                     }
-                    if(parameter =='e'){
-                        persons.get(i).este();;
+                    if(parameter =='d'){
+                        persons.get(i).derecha();
                     }
                     if(parameter =='o'){
-                        persons.get(i).oeste();;
+                        persons.get(i).izquierda();
                     }
                     System.out.print("(");System.out.print(persons.get(i).PerPosX());System.out.print(", ");System.out.print(persons.get(i).PerPosY());System.out.print(")"); System.out.println();
 
