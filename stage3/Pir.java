@@ -29,6 +29,15 @@ public class Pir extends Sensor{
         id = nextId ++;
     }
 
+    public void open() {
+        state = State.OPEN;
+        //magneticSensor.moveMagnetAwayFromSwitch();
+    }
+    public void close() {
+        state = State.CLOSE;
+        //magneticSensor.putMagnetNearSwitch();
+    }
+
     public int getStateV2(){
         if(state == State.OPEN)
             return 1;
