@@ -11,26 +11,26 @@ public class Persona {
 
     }
 
-    public void norte(){
+    public void arriba(){
 
         posY +=0.5;
     }
-    public void sur(){
+    public void abajo(){
         posY -=0.5;
     }
-    public void este(){
+    public void derecha(){
 
         posX +=0.5;
     }
-    public void oeste(){
+    public void izquierda(){
 
         posX -=0.5;
     }
 
-    public float PerPosX(){
+    public float getX(){
         return posX;
     }
-    public float PerPosY(){
+    public float getY(){
         return posY;
     }
 

@@ -1,22 +1,15 @@
-public class Pir extends Sensor{
+public class Pir{
     //atributos
-    //private Sensor sensor;
+    private Sensor sensor;
     private State state;
     private float x; // crear clase posicion para esto
     private float y;
     private float direction_angle;
     private float sensing_angle; //
     private float sensing_range;
-    private  final int id;
-    private static int nextId;
-    static {
-        nextId = 0;
-    }//corregir
     //constructor
-
-
     public Pir(float x,float y,float direction_angle,float sensing_angle,float sensing_range){
-        //sensor = new Sensor();
+        sensor = new Sensor();
         state = state.OPEN;
         this.x = x;
         this.y = y;
@@ -24,26 +17,6 @@ public class Pir extends Sensor{
         this.sensing_angle = sensing_angle;
         this.sensing_range = sensing_range;
 
-    }
-    {
-        id = nextId ++;
-    }
-
-    public void open() {
-        state = State.OPEN;
-        //magneticSensor.moveMagnetAwayFromSwitch();
-    }
-    public void close() {
-        state = State.CLOSE;
-        //magneticSensor.putMagnetNearSwitch();
-    }
-
-    public int getStateV2(){
-        if(state == State.OPEN)
-            return 1;
-        else{
-            return 0;
-        }
     }
 
     public void setX(float x){
@@ -68,10 +41,6 @@ public class Pir extends Sensor{
 
     public void openP(){
         state = State.OPEN;
-    }
-
-    public String getHeader(){
-        return "P"+id;
     }
 
     public boolean isNear(float a, float b){
@@ -105,8 +74,7 @@ public class Pir extends Sensor{
 
     }
 
-    /*
     public Sensor getSensor() {
         return sensor;
-    }*/
+    }
 }
