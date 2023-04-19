@@ -36,6 +36,7 @@ public class Stage3 {
     //metodos
     public void readConfiguration(Scanner in){
         // reading <#_doors> <#_windows> <#_PIRs>
+        central.setZones(zones);
 
         int numDoors = in.nextInt();
         for (int i = 0; i < numDoors; i++){
@@ -83,7 +84,7 @@ public class Stage3 {
 
 
         for (int i = 0; i < zones.get(2).size(); i++)
-            out.print("\t" + zones.get(2).get(i).getHeader());
+            out.print("\t" + ((Pir) zones.get(2).get(i)).getHeader());
 
 
         for (int i = 0; i < pirs.size(); i++)
@@ -207,7 +208,7 @@ public class Stage3 {
                     persons.add(p);
 
                     for(int j = 0;j < pirs.size(); j++){
-                        Pir pir_actual = pirs.get(j);
+                        Pir pir_actual =((Pir) central.getZone(2).get(j));
 
                         boolean condicion_distancia = pir_actual.isNear( p.getX() , p.getY());
                         boolean condicion_angulo = pir_actual.isInAngle( p.getX() , p.getY());
