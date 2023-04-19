@@ -1,12 +1,10 @@
 public class Pir extends Sensor{
     //atributos
-    private Sensor sensor;
-    private State state;
-    private float x; // crear clase posicion para esto
-    private float y;
+    private Position position;
     private float direction_angle;
     private float sensing_angle; //
     private float sensing_range;
+
     private final int id;
     private static int nextId;
     static {
@@ -14,10 +12,8 @@ public class Pir extends Sensor{
     }
     //constructor
     public Pir(float x,float y,float direction_angle,float sensing_angle,float sensing_range){
-        sensor = new Sensor();
-        state = state.OPEN;
-        this.x = x;
-        this.y = y;
+        position = new Position(x, y);
+
         this.direction_angle = direction_angle;
         this.sensing_angle = sensing_angle;
         this.sensing_range = sensing_range;
@@ -27,74 +23,66 @@ public class Pir extends Sensor{
         id = nextId++;
     }
 
+    //metodos
     public String getHeader(){
-        return "P"+id;
+        return "p"+id;
     }
 
-    public int getStateV2(){
-        if(state == State.OPEN)
+    public int getState(){
+        if(state == SwitchState.OPEN)
             return 1;
         else{
             return 0;
         }
     }
 
-    public void setX(float x){
-        this.x =x;
+    public Position getPosition(){
+        return position;
     }
 
-    public  void setY(float y){
-        this.y = y;
-    }
+    public void isInRange(Position position_p) {
+        float x = position.getX(); float y = position.getY();
+        float a = position_p.getX(); float b = position_p.getY();
 
-    public float getX(){
-        return x;
-    }
+        boolean condicion_distancia = false;
+        boolean condicion_angulo = false;
 
-    public  float getY(){
-        return y;
-    }
+        //is near?
+        float distance = (float) Math.sqrt(Math.pow((x - a), 2) + Math.pow((y - b), 2));
 
-    public void closeP(){
-        state = State.CLOSE;
-    }
+        System.out.print("distancia persona - sensor: ");
+        System.out.print(distance);
+        System.out.println(); // delete this
 
-    public void openP(){
-        state = State.OPEN;
-    }
+        if (distance <= sensing_range)
+            condicion_distancia = true;
 
-    public boolean isNear(float a, float b){
-        float distance = (float) Math.sqrt( Math.pow((x - a), 2) + Math.pow((y - b), 2));;
-
-        System.out.print("distancia persona - sensor: "); System.out.print(distance); System.out.println();
-
-        if(distance > sensing_range){
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-    public  boolean isInAngle(float a, float b){
-
-        float angle_rad = (float) Math.atan2((b - y) , (a - x));
-        float angle = (angle_rad * 180)/ ((float) Math.PI) ;
+        //is in angle?
+        float angle_rad = (float) Math.atan2((b - y), (a - x));
+        float angle = (angle_rad * 180) / ((float) Math.PI);
 
         float cota_inf = direction_angle - (sensing_angle / 2);
         float cota_sup = direction_angle + (sensing_angle / 2);
 
-        System.out.print("cota inf: "); System.out.print(cota_inf); System.out.print(", angulo: ");System.out.print(angle);System.out.print(", cota sup: ");System.out.print(cota_sup);System.out.println();
+        System.out.print("cota inf: ");
+        System.out.print(cota_inf);
+        System.out.print(", angulo: ");
+        System.out.print(angle);
+        System.out.print(", cota sup: ");
+        System.out.print(cota_sup);
+        System.out.println();// delete this
 
 
-        if( angle >= cota_inf && angle <= cota_sup ){
-            return true;
+        if (angle >= cota_inf && angle <= cota_sup)
+            condicion_angulo = true;
+
+        //condiciones
+        if (condicion_angulo && condicion_distancia) {
+            setState(SwitchState.CLOSE);
+           // return true;
         }else {
-            return false;
+            setState(SwitchState.OPEN);
+          //  return false;
         }
-
-    }
-
-    public Sensor getSensor() {
-        return sensor;
     }
 }

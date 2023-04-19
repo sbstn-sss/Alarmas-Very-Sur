@@ -56,12 +56,12 @@ public class Stage3 {
         }
 
         int numPirs = in.nextInt();
-        for(int i = 0;i < numPirs; i++){
+        for(int i = 0; i < numPirs; i++){
             in.nextLine();
             //reading <x> <y> <direction_angle> <sensing_angle> <sensing_range>
             pirs.add(new Pir(in.nextFloat(), in.nextFloat() , in.nextFloat(), in.nextFloat(), in.nextFloat()));
 // delete this
-            System.out.print("pos pir: (");System.out.print(pirs.get(i).getX());System.out.print(", ");System.out.print(pirs.get(i).getY());System.out.print(")"); System.out.println();
+            System.out.print("pos pir: (");System.out.print(pirs.get(i).getPosition().getX());System.out.print(", ");System.out.print(pirs.get(i).getPosition().getY());System.out.print(")"); System.out.println();
 
 
             central.addNewSensor(2, pirs.get(i));
@@ -111,12 +111,8 @@ public class Stage3 {
         for (int i = 0; i < zones.get(2).size(); i++)
             out.print("\t" + zones.get(2).get(i).getState());
 
-        for (int i = 0; i < pirs.size(); i++)
-            out.print("\t" + pirs.get(i).getStateV2());
 
-
-
-        out.print("\t");out.print(0);out.print("    ");// completar para siren
+        out.print("\t");out.print(siren.getState());out.print("    ");
         out.print("\t");out.print(central.getState()); // completar para central
 
         out.println();
@@ -127,6 +123,7 @@ public class Stage3 {
         char parameter;
         int i;
         int step = 0;
+        int limit = 0; // si es 2, aplica para zona 0,1 ; si es 3, aplica para todas las zonas
 
         boolean correct_command = true;
         boolean done = false;
@@ -146,12 +143,12 @@ public class Stage3 {
 
                     if (parameter == 'o') {
                         doors.get(i).open();
-                        if (central.getState() == 1)
-                            if(siren.getState() == 0) {
-                                siren.play();
-                            }
+                     //   if (central.getState() == 1)
+                      //      if(siren.getState() == 0) {
+                      //          siren.play();
+                      //      }
                     } else if (parameter == 'c'){
-
+                        doors.get(i).close();
                     } else{
                         correct_command = false;
                     }
@@ -162,9 +159,9 @@ public class Stage3 {
                     parameter = in.next().charAt(0);
                     if (parameter == 'o') {
                         windows.get(i).open();
-                        if (central.getState() == 1)
-                            if(siren.getState() == 0)
-                                siren.play();
+                     //   if (central.getState() == 1)
+                    //        if(siren.getState() == 0)
+                     //           siren.play();
 
                     } else if (parameter == 'c'){
                         windows.get(i).close();
@@ -185,6 +182,7 @@ public class Stage3 {
                             if ( state_z0 && state_z1 ) { // si ambas son armables se arma
                                 if(central.getState() == 0) {
                                     central.arm();
+                                    limit = 3;
                                     System.out.println("Se ha armado la alarma");
                                 }else{
                                     System.out.println("La alarma ya esta armada");
@@ -204,17 +202,18 @@ public class Stage3 {
                             if ( state_z0 && state_z1 ) { // si ambas son armables se arma
                                 if(central.getState() == 0) {
                                     central.arm();
+                                    limit = 2;
                                     System.out.println("Se ha armado la alarma");
                                 }else{
                                     System.out.println("La alarma ya esta armada");
                                 }
                             }else{
-                                System.out.println("No se ha podido armar la alarma debido a las siguientes zonas:");
+                                System.out.print("No se ha podido armar la alarma por las zonas:");
                                 if(!state_z0) {
-                                    System.out.println(0);
+                                    System.out.print(" 0 ");
                                 }
                                 if (!state_z1)
-                                    System.out.println(1);
+                                    System.out.print(" 1 ");
                                 System.out.println();
                             }
                             break;
@@ -242,21 +241,10 @@ public class Stage3 {
 
                     persons.add(p);
 
-                    for(int j = 0;j < pirs.size(); j++){
-                        Pir pir_actual =((Pir) central.getZone(2).get(j));
+                    for(int j = 0; j < central.getZone(2).size(); j++) {
+                        Pir pir_actual = ((Pir) central.getZone(2).get(j));
 
-                        boolean condicion_distancia = pir_actual.isNear( p.getX() , p.getY());
-                        boolean condicion_angulo = pir_actual.isInAngle( p.getX() , p.getY());
-                        if( condicion_distancia && condicion_angulo){
-                            siren.play();
-                            System.out.println("sirena sonando xd");
-
-                        }else{
-                            if (siren.getState() == 1){
-                                siren.stop();
-                                System.out.println("sirena sonandon't xd");
-                            }
-                        }
+                        //pir_actual.isInRange(p.getPosition());
                     }
                     break;
 
@@ -265,38 +253,27 @@ public class Stage3 {
                     i = Integer.parseInt(command.substring(1));
                     parameter = in.next().charAt(0);
                     if(parameter =='w'){
-                        persons.get(i).arriba();
+                        persons.get(i).getPosition().arriba();
                     }
                     if(parameter =='s'){
-                        persons.get(i).abajo();
+                        persons.get(i).getPosition().abajo();
                     }
                     if(parameter =='a'){
-                        persons.get(i).izquierda();;
+                        persons.get(i).getPosition().izquierda();;
                     }
                     if(parameter =='d'){
-                        persons.get(i).derecha();;
+                        persons.get(i).getPosition().derecha();;
                     }
-                    System.out.print("(");System.out.print(persons.get(i).getX());System.out.print(", ");System.out.print(persons.get(i).getY());System.out.print(")"); System.out.println();
+                    System.out.print("(");System.out.print(persons.get(i).getPosition().getX());System.out.print(", ");System.out.print(persons.get(i).getPosition().getY());System.out.print(")"); System.out.println();
 
-                    for(int j = 0;j < pirs.size(); j++){
-                        Pir pir_actual = pirs.get(j);
+                    for(int j = 0; j < central.getZone(2).size(); j++) {
+                        Pir pir_actual = ((Pir) central.getZone(2).get(j));
 
-                        boolean condicion_distancia = pir_actual.isNear( persons.get(i).getX() , persons.get(i).getY()) ;
-                        boolean condicion_angulo = pir_actual.isInAngle( persons.get(i).getX() , persons.get(i).getY() );
-                        if( condicion_distancia && condicion_angulo){
-                            siren.play();
-                            System.out.println("sirena sonando xd");
+                        pir_actual.isInRange(persons.get(i).getPosition());
 
-                        }else{
-                            if (siren.getState() == 1){
-                                siren.stop();
-                                System.out.println("sirena sonandon't xd");
-                            }
-                        }
                     }
-
-                    //siren.play();
                     break;
+
                 case 'x':
                     done = true;   // Added to finish the program
                     if (siren.getState() == 1)
@@ -306,7 +283,9 @@ public class Stage3 {
                 default:
                     correct_command = false;
             }
-            //central.checkZone(); // dudoso
+            if (central.getState() == 1)
+                central.checkAllZones(limit); // AL FINAL TENIA SENTIDO XD, si se cumple que central = 1, que checkzone sea falso para z0 o z1,
+                    // y que pir cambie a 0  // trabajar en eso ma;ana xd
         }
     }
 

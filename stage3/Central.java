@@ -42,13 +42,25 @@ public class Central {
         for (int i = 0; i < zone.size(); i ++){
             Sensor sensor_actual = zone.get(i);
             //System.out.println(sensor_actual.getState()); // borrar luego
-            if (sensor_actual.getState() == SwitchState.OPEN)
+            if (sensor_actual.getState() == 0)
                 armable = false;
         }
         if (armable)
             return true;
         else
             return false;
+    }
+    public void checkAllZones(int limit){ // limites: 3 - all ; 2 - perimetral
+        if (isArmed == true)
+            for (int i = 0; i < limit; i++)
+                for(int j = 0; j < zones.get(i).size(); j++){
+                    Sensor sensor_actual = zones.get(i).get(j);
+
+                    if( sensor_actual.getState() == 0 && siren.getState() == 0){
+                        siren.play();
+                    }
+
+                }
     }
 
     public String getHeader(){
@@ -57,4 +69,5 @@ public class Central {
     public int getState(){
         return isArmed?1:0;
     }
+
 }

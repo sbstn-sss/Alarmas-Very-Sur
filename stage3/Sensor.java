@@ -1,6 +1,6 @@
 public class Sensor {
     //atributos
-    private SwitchState state;
+    protected SwitchState state;
     //Constructor
     public Sensor(){
 
@@ -12,8 +12,11 @@ public class Sensor {
 
     //metodos
 
-    public SwitchState getState(){
-        return state;
+    public int getState(){
+        if (state == SwitchState.CLOSE)
+            return 1;
+        else
+            return 0;
     }
 
     protected void setState(SwitchState s) {
