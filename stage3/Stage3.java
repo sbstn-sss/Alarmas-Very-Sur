@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,19 +9,17 @@ public class Stage3 {
     private ArrayList<Window> windows;
     private ArrayList<Pir> pirs;
     private Central central;
+    private ArrayList<ArrayList<Sensor>> zones;
     private Siren siren;
-<<<<<<< HEAD
 
     private ArrayList<Persona> persons;
 
-=======
-    private ArrayList<persona> persons;
->>>>>>> origin/sub_main
+
     //constructor
     public Stage3() {
         doors = new ArrayList<Door>();
         windows = new ArrayList<Window>();
-<<<<<<< HEAD
+
         pirs = new ArrayList<Pir>(); // esto pasa a sensores
         central = new Central();
 
@@ -32,16 +29,14 @@ public class Stage3 {
             zones.add(new ArrayList<Sensor>());
         }
 
-        persons = new ArrayList<Persona>();
-=======
         pirs = new ArrayList<Pir>();
-        persons = new ArrayList<persona>();
->>>>>>> origin/sub_main
+        persons = new ArrayList<Persona>();
+
     }
     //metodos
     public void readConfiguration(Scanner in){
         // reading <#_doors> <#_windows> <#_PIRs>
-        central = new Central();
+
         int numDoors = in.nextInt();
         for (int i = 0; i < numDoors; i++){
             doors.add(new Door());
@@ -59,26 +54,15 @@ public class Stage3 {
         }
 
         int numPirs = in.nextInt();
-<<<<<<< HEAD
         for(int i = 0;i < numPirs; i++){
-=======
-
-
-        for(int i=0;i<numPirs;i++){
->>>>>>> origin/sub_main
             in.nextLine();
             //reading <x> <y> <direction_angle> <sensing_angle> <sensing_range>
             pirs.add(new Pir(in.nextFloat(), in.nextFloat() , in.nextFloat(), in.nextFloat(), in.nextFloat()));
 // delete this
             System.out.print("pos pir: (");System.out.print(pirs.get(i).getX());System.out.print(", ");System.out.print(pirs.get(i).getY());System.out.print(")"); System.out.println();
 
-<<<<<<< HEAD
+
             central.addNewSensor(2, pirs.get(i));
-=======
-
-            central.addNewSensorPir(pirs.get(i));
-
->>>>>>> origin/sub_main
         }
 
         in.nextLine();
@@ -97,14 +81,15 @@ public class Stage3 {
         for (int i = 0; i < windows.size(); i++)
             out.print("\t" + windows.get(i).getHeader());
 
-<<<<<<< HEAD
+
         for (int i = 0; i < zones.get(2).size(); i++)
             out.print("\t" + zones.get(2).get(i).getHeader());
 
-=======
+
         for (int i = 0; i < pirs.size(); i++)
             out.print("\t" + pirs.get(i).getHeader());
->>>>>>> origin/sub_main
+
+
 
         out.print("\t" + siren.getHeader());
         out.print("\t" + central.getHeader());
@@ -120,13 +105,14 @@ public class Stage3 {
         for (int i = 0; i < windows.size(); i++)
             out.print("\t" + windows.get(i).getState());
 
-<<<<<<< HEAD
+
         for (int i = 0; i < zones.get(2).size(); i++)
             out.print("\t" + zones.get(2).get(i).getState());
-=======
+
         for (int i = 0; i < pirs.size(); i++)
             out.print("\t" + pirs.get(i).getStateV2());
->>>>>>> origin/sub_main
+
+
 
         out.print("\t");out.print(0);out.print("    ");// completar para siren
         out.print("\t");out.print(central.getState()); // completar para central
@@ -189,82 +175,16 @@ public class Stage3 {
                 case 'k':
                     parameter = in.next().charAt(0);
 
-<<<<<<< HEAD
+
                     boolean state_z0 = central.checkZone(0);
                     boolean state_z1 = central.checkZone(1); // para usar esto en abrir puerta y ventanas , colocar estas variables mas arriba
 
-                    switch (parameter) {
-                        case 'a':
-                            if ( state_z0 && state_z1 ) { // si ambas son armables se arma
-=======
-                    boolean state_z0 = central.checkZone();// Puertas y ventanas
-                    boolean state_z2 = central.checkZoneV2();//Pirs
 
                     switch (parameter) {
                         case 'a':
-
-                            if ( state_z0) { //pir
->>>>>>> origin/sub_main
-                                if(central.getState() == 0) {
-                                    central.arm();
-                                    System.out.println("Se ha armado la alarma");
-                                }else{
-                                    System.out.println("La alarma ya esta armada");
-                                }
-                            }else{
-                                System.out.println("No se ha podido armar la alarma por las zonas:");
-                                if(!state_z0) {
-                                    System.out.println(0);
-                                }
-<<<<<<< HEAD
-                                if (!state_z1)
-=======
-                                if (!state_z2)
->>>>>>> origin/sub_main
-                                    System.out.println(1);
-                                System.out.println();
-                            }
-
-<<<<<<< HEAD
-                            // AGREGAR CASO PIR
-
-=======
->>>>>>> origin/sub_main
-                            break;
 
                         case 'p':
-<<<<<<< HEAD
-                            if ( state_z0 && state_z1 ) { // si ambas son armables se arma
-=======
 
-                            if ( state_z0) {
->>>>>>> origin/sub_main
-                                if(central.getState() == 0) {
-                                    central.arm();
-                                    System.out.println("Se ha armado la alarma");
-                                }else{
-                                    System.out.println("La alarma ya esta armada");
-                                }
-                            }else{
-<<<<<<< HEAD
-                                System.out.println("No se ha podido armar la alarma debido a las siguientes zonas:");
-                                if(!state_z0) {
-                                    System.out.println(0);
-                                }
-                                if (!state_z1)
-=======
-                                System.out.println("No se ha podido armar la alarma por las zonas:");
-                                if(!state_z0) {
-                                    System.out.println(0);
-                                }
-                                if (!state_z2)
->>>>>>> origin/sub_main
-                                    System.out.println(1);
-                                System.out.println();
-                            }
-                            break;
-
-<<<<<<< HEAD
                         case 'd':
                             if (central.getState() == 1) {
                                 central.disarm();
@@ -272,11 +192,6 @@ public class Stage3 {
                             }else{
                                 System.out.println("La alarma ya esta desarmada");
                             }
-=======
-                        case 'b':
-                            central.disarm();
->>>>>>> origin/sub_main
-                            break;
 
                         default:
                             correct_command = false;
@@ -287,7 +202,7 @@ public class Stage3 {
                     float x= in.nextFloat();
                     float y= in.nextFloat();
 
-                    persona p = new persona(x,y);
+                    Persona p = new Persona(x,y);
 
                     persons.add(p);
 
@@ -314,24 +229,24 @@ public class Stage3 {
                     i = Integer.parseInt(command.substring(1));
                     parameter = in.next().charAt(0);
                     if(parameter =='n'){
-                        persons.get(i).norte();
+                        persons.get(i).arriba();
                     }
                     if(parameter =='s'){
-                        persons.get(i).sur();
+                        persons.get(i).abajo();
                     }
                     if(parameter =='e'){
-                        persons.get(i).este();;
+                        persons.get(i).izquierda();;
                     }
                     if(parameter =='o'){
-                        persons.get(i).oeste();;
+                        persons.get(i).derecha();;
                     }
-                    System.out.print("(");System.out.print(persons.get(i).PerPosX());System.out.print(", ");System.out.print(persons.get(i).PerPosY());System.out.print(")"); System.out.println();
+                    System.out.print("(");System.out.print(persons.get(i).getX());System.out.print(", ");System.out.print(persons.get(i).getY());System.out.print(")"); System.out.println();
 
                     for(int j = 0;j < pirs.size(); j++){
                         Pir pir_actual = pirs.get(j);
 
-                        boolean condicion_distancia = pir_actual.isNear( persons.get(i).PerPosX() , persons.get(i).PerPosY()) ;
-                        boolean condicion_angulo = pir_actual.isInAngle( persons.get(i).PerPosX() , persons.get(i).PerPosY() );
+                        boolean condicion_distancia = pir_actual.isNear( persons.get(i).getX() , persons.get(i).getY()) ;
+                        boolean condicion_angulo = pir_actual.isInAngle( persons.get(i).getX() , persons.get(i).getY() );
                         if( condicion_distancia && condicion_angulo){
                             siren.play();
                             System.out.println("sirena sonando xd");
