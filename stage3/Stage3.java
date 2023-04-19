@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -176,15 +177,47 @@ public class Stage3 {
                 case 'k':
                     parameter = in.next().charAt(0);
 
-
                     boolean state_z0 = central.checkZone(0);
                     boolean state_z1 = central.checkZone(1); // para usar esto en abrir puerta y ventanas , colocar estas variables mas arriba
 
-
                     switch (parameter) {
                         case 'a':
+                            if ( state_z0 && state_z1 ) { // si ambas son armables se arma
+                                if(central.getState() == 0) {
+                                    central.arm();
+                                    System.out.println("Se ha armado la alarma");
+                                }else{
+                                    System.out.println("La alarma ya esta armada");
+                                }
+                            }else{
+                                System.out.print("No se ha podido armar la alarma por las zonas:");
+                                if(!state_z0) {
+                                    System.out.print(" 0 ");
+                                }
+                                if (!state_z1)
+                                    System.out.print(" 1 ");
+                                System.out.println();
+                            }
+                            break;
 
                         case 'p':
+                            if ( state_z0 && state_z1 ) { // si ambas son armables se arma
+                                if(central.getState() == 0) {
+                                    central.arm();
+                                    System.out.println("Se ha armado la alarma");
+                                }else{
+                                    System.out.println("La alarma ya esta armada");
+                                }
+                            }else{
+                                System.out.println("No se ha podido armar la alarma debido a las siguientes zonas:");
+                                if(!state_z0) {
+                                    System.out.println(0);
+                                }
+                                if (!state_z1)
+                                    System.out.println(1);
+                                System.out.println();
+                            }
+                            break;
 
                         case 'd':
                             if (central.getState() == 1) {
@@ -193,11 +226,13 @@ public class Stage3 {
                             }else{
                                 System.out.println("La alarma ya esta desarmada");
                             }
+                            break;
 
                         default:
                             correct_command = false;
                     }
                     break;
+
 
                 case 'c':
                     float x= in.nextFloat();
@@ -229,16 +264,16 @@ public class Stage3 {
                 case 'p':
                     i = Integer.parseInt(command.substring(1));
                     parameter = in.next().charAt(0);
-                    if(parameter =='n'){
+                    if(parameter =='w'){
                         persons.get(i).arriba();
                     }
                     if(parameter =='s'){
                         persons.get(i).abajo();
                     }
-                    if(parameter =='e'){
+                    if(parameter =='a'){
                         persons.get(i).izquierda();;
                     }
-                    if(parameter =='o'){
+                    if(parameter =='d'){
                         persons.get(i).derecha();;
                     }
                     System.out.print("(");System.out.print(persons.get(i).getX());System.out.print(", ");System.out.print(persons.get(i).getY());System.out.print(")"); System.out.println();
