@@ -32,10 +32,6 @@ public class Central {
     public ArrayList<Sensor> getZone(int zone_id){ // no usado de momento
         return zones.get(zone_id);
     }
-    public void addNewSensor(Sensor s){
-        zone0.add(s);
-    }
-
     public void addNewSensor(int zone_id, Sensor s){
         zones.get(zone_id).add(s);
     }
