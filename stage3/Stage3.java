@@ -191,7 +191,7 @@ public class Stage3 {
                                 System.out.println();
                             }
                             break;
-
+/* Stage 4
                         case 'p':
                             if ( state_z0 && state_z1 ) { // si ambas son armables se arma
                                 if(central.getState() == 0) {
@@ -211,7 +211,7 @@ public class Stage3 {
                                 System.out.println();
                             }
                             break;
-
+*/
                         case 'd':
                             if (central.getState() == 1) {
                                 central.disarm();
@@ -238,7 +238,7 @@ public class Stage3 {
                     for(int j = 0; j < central.getZone(2).size(); j++) {
                         Pir pir_actual = ((Pir) central.getZone(2).get(j));
 
-                        //pir_actual.isInRange(p.getPosition());
+                        pir_actual.isInRange(p.getPosition());
                     }
                     break;
 

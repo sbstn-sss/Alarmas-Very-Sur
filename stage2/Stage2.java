@@ -154,7 +154,7 @@ public class Stage2 {
                                 System.out.println();
                             }
                             break;
-
+/*
                         case 'p':
                             if ( state_z0 && state_z1 ) { // si ambas son armables se arma
                                 if(central.getState() == 0) {
@@ -174,7 +174,7 @@ public class Stage2 {
                                 System.out.println();
                             }
                             break;
-
+*/
                         case 'd':
                             if (central.getState() == 1) {
                                 central.disarm();
