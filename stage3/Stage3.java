@@ -143,10 +143,7 @@ public class Stage3 {
 
                     if (parameter == 'o') {
                         doors.get(i).open();
-                     //   if (central.getState() == 1)
-                      //      if(siren.getState() == 0) {
-                      //          siren.play();
-                      //      }
+
                     } else if (parameter == 'c'){
                         doors.get(i).close();
                     } else{
@@ -159,9 +156,6 @@ public class Stage3 {
                     parameter = in.next().charAt(0);
                     if (parameter == 'o') {
                         windows.get(i).open();
-                     //   if (central.getState() == 1)
-                    //        if(siren.getState() == 0)
-                     //           siren.play();
 
                     } else if (parameter == 'c'){
                         windows.get(i).close();
@@ -234,8 +228,8 @@ public class Stage3 {
 
 
                 case 'c':
-                    float x= in.nextFloat();
-                    float y= in.nextFloat();
+                    float x = in.nextFloat();
+                    float y = in.nextFloat();
 
                     Persona p = new Persona(x,y);
 
@@ -254,16 +248,17 @@ public class Stage3 {
                     parameter = in.next().charAt(0);
                     if(parameter =='w'){
                         persons.get(i).getPosition().arriba();
-                    }
-                    if(parameter =='s'){
+                    }else if(parameter =='s'){
                         persons.get(i).getPosition().abajo();
-                    }
-                    if(parameter =='a'){
+                    }else if(parameter =='a'){
                         persons.get(i).getPosition().izquierda();;
-                    }
-                    if(parameter =='d'){
+                    }else if(parameter =='d'){
                         persons.get(i).getPosition().derecha();;
+                    }else{
+                        correct_command = false;
+                        break;
                     }
+
                     System.out.print("(");System.out.print(persons.get(i).getPosition().getX());System.out.print(", ");System.out.print(persons.get(i).getPosition().getY());System.out.print(")"); System.out.println();
 
                     for(int j = 0; j < central.getZone(2).size(); j++) {

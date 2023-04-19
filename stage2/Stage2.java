@@ -86,6 +86,7 @@ public class Stage2 {
         char parameter;
         int i;
         int step = 0;
+        int limit = 0; // si es 2, aplica para zona 0,1 ; si es 3, aplica para todas las zonas
 
         boolean correct_command = true;
         boolean done = false;
@@ -105,12 +106,9 @@ public class Stage2 {
 
                     if (parameter == 'o') {
                         doors.get(i).open();
-                        if (central.getState() == 1)
-                            if(siren.getState() == 0) {
-                                siren.play();
-                            }
-                    } else if (parameter == 'c'){
 
+                    } else if (parameter == 'c'){
+                        doors.get(i).close();
                     } else{
                         correct_command = false;
                     }
@@ -121,9 +119,6 @@ public class Stage2 {
                     parameter = in.next().charAt(0);
                     if (parameter == 'o') {
                         windows.get(i).open();
-                        if (central.getState() == 1)
-                            if(siren.getState() == 0)
-                                siren.play();
 
                     } else if (parameter == 'c'){
                         windows.get(i).close();
@@ -144,6 +139,7 @@ public class Stage2 {
                             if ( state_z0 && state_z1 ) { // si ambas son armables se arma
                                 if(central.getState() == 0) {
                                     central.arm();
+                                    limit = 2; // no hay pirs
                                     System.out.println("Se ha armado la alarma");
                                 }else{
                                     System.out.println("La alarma ya esta armada");
@@ -163,17 +159,18 @@ public class Stage2 {
                             if ( state_z0 && state_z1 ) { // si ambas son armables se arma
                                 if(central.getState() == 0) {
                                     central.arm();
+                                    limit = 2;
                                     System.out.println("Se ha armado la alarma");
                                 }else{
                                     System.out.println("La alarma ya esta armada");
                                 }
                             }else{
-                                System.out.println("No se ha podido armar la alarma debido a las siguientes zonas:");
+                                System.out.print("No se ha podido armar la alarma por las zonas:");
                                 if(!state_z0) {
-                                    System.out.println(0);
+                                    System.out.print(" 0 ");
                                 }
                                 if (!state_z1)
-                                    System.out.println(1);
+                                    System.out.print(" 1 ");
                                 System.out.println();
                             }
                             break;
@@ -201,6 +198,9 @@ public class Stage2 {
                 default:
                     correct_command = false;
             }
+            if (central.getState() == 1)
+                central.checkAllZones(limit); // AL FINAL TENIA SENTIDO XD, si se cumple que central = 1, que checkzone sea falso para z0 o z1,
+            // y que pir cambie a 0  // trabajar en eso ma;ana xd
         }
     }
 
