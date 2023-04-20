@@ -50,10 +50,6 @@ public class Pir extends Sensor{
         //is near?
         float distance = (float) Math.sqrt(Math.pow((x - a), 2) + Math.pow((y - b), 2));
 
-        System.out.print("distancia persona - sensor: ");
-        System.out.print(distance);
-        System.out.println(); // delete this
-
         if (distance <= sensing_range)
             condicion_distancia = true;
 
@@ -63,15 +59,6 @@ public class Pir extends Sensor{
 
         float cota_inf = direction_angle - (sensing_angle / 2);
         float cota_sup = direction_angle + (sensing_angle / 2);
-
-        System.out.print("cota inf: ");
-        System.out.print(cota_inf);
-        System.out.print(", angulo: ");
-        System.out.print(angle);
-        System.out.print(", cota sup: ");
-        System.out.print(cota_sup);
-        System.out.println();// delete this
-
 
         if (angle >= cota_inf && angle <= cota_sup)
             condicion_angulo = true;
