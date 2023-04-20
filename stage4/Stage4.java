@@ -60,8 +60,6 @@ public class Stage4 {
             in.nextLine();
             //reading <x> <y> <direction_angle> <sensing_angle> <sensing_range>
             pirs.add(new Pir(in.nextFloat(), in.nextFloat() , in.nextFloat(), in.nextFloat(), in.nextFloat()));
-// delete this
-            System.out.print("pos pir: (");System.out.print(pirs.get(i).getPosition().getX());System.out.print(", ");System.out.print(pirs.get(i).getPosition().getY());System.out.print(")"); System.out.println();
 
 
             central.addNewSensor(2, pirs.get(i));
