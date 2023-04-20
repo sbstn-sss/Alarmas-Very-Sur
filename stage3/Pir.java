@@ -50,10 +50,6 @@ public class Pir extends Sensor{
         //is near?
         float distance = (float) Math.sqrt(Math.pow((x - a), 2) + Math.pow((y - b), 2));
 
-        System.out.print("distancia persona - sensor: ");
-        System.out.print(distance);
-        System.out.println(); // delete this
-
         if (distance <= sensing_range)
             condicion_distancia = true;
 
