@@ -41,7 +41,6 @@ public class Central {
         boolean armable = true;
         for (int i = 0; i < zone.size(); i ++){
             Sensor sensor_actual = zone.get(i);
-            //System.out.println(sensor_actual.getState()); // borrar luego
             if (sensor_actual.getState() == 0)
                 armable = false;
         }
