@@ -39,30 +39,27 @@ Si desea compilar en aragorn o vía terminal, primero diríjase a la carpeta de 
 
 ```
 $make
-
 ```
 así, el programa se compilará y como resultado entregará un ejecutable llamado "(por definir)".
 
 si desea borrar el ejecutable, bastará con escribir:
 ```
 $make clean
-
 ```
 si desea ejecutar el programa tras compilar, bastará con escribir:
 ```
 $make run
-
 ```
 
 
 # Funcionamiento⚙️:
 Dentro de los sensores que tenemos disponibles, son los PIR, que detecctan las personas dentro de su rango y los magnéticos que contiene un interruptor, en la cual detecta si las puertas y ventanas están abiertas o cerradas. Por lo general cada sensor magnético está atada a una puerta o una ventana.
 
-La aplicación leerá desde el archivo `config.txt` de la carpeta `stage`. Esta posee las configuraciones de las cantidades de cada sensor, sus posiciones y rango de detección. Se especifica su formato a continuación:
+La aplicación leerá desde el archivo `config.txt` de la carpeta `stage`. Esta posee las configuraciones de las cantidades de cada sensor que usted podrá modificar. Contiene las posiciones, ángulo de posicionamiento, radio de detección y rango de detección. Se especifica su formato a continuación:
 
 ```
 <#Puertas><#Ventanas><#Pirs>
-<x><y><dirección del ángulo><angulo de detección><área de detección>
+<x><y><ángulo de posicionamiento><radio de detección><rango de detección>
 ...
 siren.wav
 ```
