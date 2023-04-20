@@ -21,13 +21,13 @@ CLASSES = \
 	SwitchState.java\
 	Window.java
 
-MAIN = Stage4 
+MAIN = Stage4
 
 default:classes
 
 classes:$(CLASSES:.java=.class)
 
-run:$(MAIN).class
+run: $(MAIN).class
 	$(JVM) $(MAIN) $(FILE)
 
 clean:
