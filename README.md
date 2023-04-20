@@ -62,3 +62,6 @@ En el sistema Very-sur, existe un sistema de alarmas (central), en el cual exist
 <p align="center">
   <img src="https://github.com/sbstn-sss/Alarmas_Very_Sur/blob/sub_main/UMLdiagram.png?raw=true" width="1000"  alt="Alarmas Very Sur"/>
 </p>
+<p align="center">
+  <img src="https://github.com/sbstn-sss/Alarmas_Very_Sur/blob/main/UMLDiagram.drawio.png?raw=true" width="1000"  alt="Alarmas Very Sur">
+</p>
