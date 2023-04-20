@@ -30,7 +30,7 @@ Nuesto objetivo consiste en crear un programa que modele las funcionalidades de 
 
 
 # Ejecución y Compilación🤖💻:
-El programa funciona en Java, por lo que es necesario una IDE que trabaje con dicho lenguaje. Recomendamos que fuese ejecutado en IntelliJ, ya que el código fue contruido con la versión más actual a la fecha "17.0.6+10-b829.5 amd64" ,y se ahorrará los pasos de compilación importando el proyecto y luego haciendo click en el botón `Run`. 
+El programa funciona en Java, por lo que es necesario una IDE que trabaje con dicho lenguaje. Recomendamos que fuese ejecutado en IntelliJ, ya que el código fue contruido con la versión más actual a la fecha "17.0.6+10-b829.5 amd64" ,y se ahorrará los pasos de compilación importando el proyecto y luego haciendo click en el botón "Run". 
 
 
 Al descargar el proyecto, notará que contiene distintas carpetas que van desde la stage uno a la stage cuatro. Cada una de estas carpetas contienen un archivo makefile que nos ayudará a compilar cada stage (Se explicará el funcionamiento de cada stage en "Funcionamiento").
@@ -39,29 +39,26 @@ Si desea compilar en aragorn o vía terminal, primero diríjase a la carpeta de 
 
 ```
 $make
+
 ```
 así, el programa se compilará y como resultado entregará un ejecutable llamado "(por definir)".
 
 si desea borrar el ejecutable, bastará con escribir:
 ```
 $make clean
+
 ```
 si desea ejecutar el programa tras compilar, bastará con escribir:
 ```
 $make run
+
 ```
 
 
 # Funcionamiento⚙️:
-Dentro de los sensores que tenemos disponibles, son los PIR, que detecctan las personas dentro de su rango y los magnéticos que contiene un interruptor, en la cual detecta si las puertas y ventanas están abiertas o cerradas. Por lo general cada sensor magnético está atada a una puerta o una ventana.
+En el sistema Very-sur, existe un sistema de alarmas (central), en el cual existen sensores magneticos los cuales estan instalados en puertas y ventanas. Además, existe un sensor llamado PIR, los cuales detectan las personas dentro de su rango y los magnéticos que contiene un interruptor, en la cual detecta si las puertas y ventanas están abiertas o cerradas. Por lo general cada sensor magnético está atada a una puerta o una ventana.
 
-La aplicación leerá desde el archivo `config.txt` de la carpeta `stage`. Esta posee las configuraciones de las cantidades de cada sensor que usted podrá modificar. Contiene las posiciones, ángulo de posicionamiento, radio de detección y rango de detección. Se especifica su formato a continuación:
 
-```
-<#Puertas><#Ventanas><#Pirs>
-<x><y><ángulo de posicionamiento><radio de detección><rango de detección>
-...
-siren.wav
-```
-
-No modifique la útltima línea, ya que especifíca el archivo del sonido de la alarma.
+<p align="center">
+  <img src="https://github.com/sbstn-sss/Alarmas_Very_Sur/blob/sub_main/UMLdiagram.png?raw=true" width="1000"  alt="Alarmas Very Sur"/>
+</p>
