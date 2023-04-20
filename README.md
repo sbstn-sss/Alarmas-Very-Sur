@@ -56,9 +56,15 @@ $make run
 
 
 # Funcionamiento⚙️:
-En el sistema Very-sur, existe un sistema de alarmas (central), en el cual existen sensores magneticos los cuales estan instalados en puertas y ventanas. Estos contienen un interruptor, en la cual detecta si las puertas y ventanas están abiertas o cerradas.
+En el sistema Very-sur, existe un sistema de alarmas (central)
+```explicacion clase central y clase sensor```
+
+En este existen sensores magneticos los cuales estan instalados en puertas y ventanas. Estos contienen un interruptor, en la cual detecta si las puertas y ventanas están abiertas o cerradas.
+```explicacion clase sensor magnetico```
 
 Además, existe un sensor llamado PIR, los cuales detectan las personas dentro de un radio indicado
+```explicacion clase pir```
+
 
 Luego de ser instalada la alarma, cuando una persona pasa por dentro del radio de la alarma, la alarma suena indefinidamente.
 
