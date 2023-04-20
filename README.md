@@ -35,7 +35,25 @@ El programa funciona en Java, por lo que es necesario una IDE que trabaje con di
 
 Al descargar el proyecto, notará que contiene distintas carpetas que van desde la stage uno a la stage cuatro. Cada una de estas carpetas contienen un archivo makefile que nos ayudará a compilar cada stage (Se explicará el funcionamiento de cada stage en "Funcionamiento").
 
-Si desea compilar en pro
+Si desea compilar en aragorn o vía terminal, primero diríjase a la carpeta de alguna stage por comando. Como cada stage contiene su propio makefile, escriba el comando:
+
+```
+$make
+
+```
+así, el programa se compilará y como resultado entregará un ejecutable llamado "(por definir)".
+
+si desea borrar el ejecutable, bastará con escribir:
+```
+$make clean
+
+```
+si desea ejecutar el programa tras compilar, bastará con escribir:
+```
+$make run
+
+```
+
 
 # Funcionamiento⚙️:
 
