@@ -56,5 +56,5 @@ $make run
 
 
 # Funcionamiento⚙️:
-
+Dentro de los sensores que tenemos disponibles, son los PIR, que detecctan las personas dentro de su rango y los magnéticos que están 
 
