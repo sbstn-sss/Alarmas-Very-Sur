@@ -88,11 +88,6 @@ public class Stage3 {
             out.print("\t" + ((Pir) zones.get(2).get(i)).getHeader());
 
 
-        for (int i = 0; i < pirs.size(); i++)
-            out.print("\t" + pirs.get(i).getHeader());
-
-
-
         out.print("\t" + siren.getHeader());
         out.print("\t" + central.getHeader());
 
