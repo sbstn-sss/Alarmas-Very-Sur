@@ -30,7 +30,7 @@ Nuesto objetivo consiste en crear un programa que modele las funcionalidades de 
 
 
 # Ejecución y Compilación🤖💻:
-El programa funciona en Java, por lo que es necesario una IDE que trabaje con dicho lenguaje. Recomendamos que fuese ejecutado en IntelliJ, ya que el código fue contruido con la versión más actual a la fecha "17.0.6+10-b829.5 amd64" ,y se ahorrará los pasos de compilación importando el proyecto y luego haciendo click en el botón "Run". 
+El programa funciona en Java, por lo que es necesario una IDE que trabaje con dicho lenguaje. Recomendamos que fuese ejecutado en IntelliJ, ya que el código fue contruido con la versión más actual a la fecha "17.0.6+10-b829.5 amd64" ,y se ahorrará los pasos de compilación importando el proyecto y luego haciendo click en el botón `Run`. 
 
 
 Al descargar el proyecto, notará que contiene distintas carpetas que van desde la stage uno a la stage cuatro. Cada una de estas carpetas contienen un archivo makefile que nos ayudará a compilar cada stage (Se explicará el funcionamiento de cada stage en "Funcionamiento").
@@ -56,8 +56,15 @@ $make run
 
 
 # Funcionamiento⚙️:
-Dentro de los sensores que tenemos disponibles, son los PIR, que detecctan las personas dentro de su rango y los magnéticos que están 
+Dentro de los sensores que tenemos disponibles, son los PIR, que detecctan las personas dentro de su rango y los magnéticos que contiene un interruptor, en la cual detecta si las puertas y ventanas están abiertas o cerradas. Por lo general cada sensor magnético está atada a una puerta o una ventana.
 
-<p align="center">
-  <img src="https://github.com/sbstn-sss/Alarmas_Very_Sur/blob/sub_main/UMLdiagram.png?raw=true" width="1000"  alt="Alarmas Very Sur"/>
-</p>
+La aplicación leerá desde el archivo `config.txt` de la carpeta `stage`. Esta posee las configuraciones de las cantidades de cada sensor, sus posiciones y rango de detección. Se especifica su formato a continuación:
+
+```
+<#Puertas><#Ventanas><#Pirs>
+<x><y><dirección del ángulo><angulo de detección><área de detección>
+...
+siren.wav
+```
+
+No modifique la útltima línea, ya que especifíca el archivo del sonido de la alarma.
