@@ -15,7 +15,7 @@ CLASSES = \
 	SwitchState.java\
 	Window.java
 
-MAIN = Stage4 
+MAIN = Stage1
 
 default:classes
 
