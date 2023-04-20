@@ -1,7 +1,7 @@
-JFLAGS = -g
-JC = javac
-JVM = java
-FILE = "config.txt"
+JFLAGS = -g 
+JC = javac 
+JVM = java 
+FILE = "config.txt" 
 .SUFFIXES: .java .class
 .java.class:
 	$(JC) $(JFLAGS)$*.java
