@@ -58,3 +58,6 @@ $make run
 # Funcionamiento⚙️:
 Dentro de los sensores que tenemos disponibles, son los PIR, que detecctan las personas dentro de su rango y los magnéticos que están 
 
+<p align="center">
+  <img src="https://github.com/sbstn-sss/Alarmas_Very_Sur/blob/sub_main/UMLdiagram.png?raw=true" width="256"  alt="Alarmas Very Sur"/>
+</p>
