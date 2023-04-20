@@ -64,14 +64,6 @@ public class Pir extends Sensor{
         float cota_inf = direction_angle - (sensing_angle / 2);
         float cota_sup = direction_angle + (sensing_angle / 2);
 
-        System.out.print("cota inf: ");
-        System.out.print(cota_inf);
-        System.out.print(", angulo: ");
-        System.out.print(angle);
-        System.out.print(", cota sup: ");
-        System.out.print(cota_sup);
-        System.out.println();// delete this
-
 
         if (angle >= cota_inf && angle <= cota_sup)
             condicion_angulo = true;
