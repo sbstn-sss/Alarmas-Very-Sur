@@ -73,7 +73,7 @@ los valores ingresados pueden ser los siguientes:
 | `ci`| `x` `y`  |  crea una persona en la posición <`x`,`y`> |
 
 ### Comandos de desplazamiento:
-Para utilizar estos comando, primero debe haber creado como mínimo 1 persona. `i` es el identificador de cada persona que va acompañado de una letra `p`.
+Para utilizar estos comando, primero debe haber creado como mínimo 1 persona. `i` es el identificador de cada persona que va acompañado del comando `p`.
 | `Comando`  | `Parámetro` |  `Descripción` |
 | ------------- | ------------- | ------------- | 
 | `pi`| `n`  |  desplaza la persona `i` 0.5 metros al norte  |
