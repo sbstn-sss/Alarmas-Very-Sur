@@ -70,7 +70,7 @@ los valores ingresados pueden ser los siguientes:
 | `di`| `c`  |  deja la puerta `i` cerrado |
 | `wi`| `o`  |  deja la ventana `i` abierto |
 | `wi`| `c`  |  deja la ventana `i` cerrado |
-| `ci`| `x` `y`  |  crea una persona en la posición <`x`,`y`> |
+| `c`| `x` `y`  |  crea una persona en la posición <`x`,`y`> |
 
 ### Comandos de desplazamiento🧭:
 Para utilizar estos comando, primero debe haber creado como mínimo 1 persona. `i` es el identificador de cada persona que va acompañado del comando `p`.
