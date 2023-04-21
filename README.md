@@ -63,9 +63,9 @@ los valores ingresados pueden ser los siguientes:
 
 | `Comando`  | `Parámetro` |  `Descripción` |
 | ------------- | ------------- | ------------- | 
-| `k` | `a`  |  arma la zona si todas las puertas, ventanas y pir están cerradas |
-| `k` | `p`  |  arma la zona si todas las puertas y ventanas están cerradas |
-| `k` | `d`  |  desarma la zona |
+| `k` | `a`  |  arma alarma completa |
+| `k` | `p`  |  arma alarma perimetral |
+| `k` | `d`  |  desarma la alarma |
 | `di`| `o`  |  deja la puerta `i` abierto  |
 | `di`| `c`  |  deja la puerta `i` cerrado |
 | `wi`| `o`  |  deja la ventana `i` abierto |
