@@ -55,7 +55,7 @@ $make run
 ```
 
 
-# Comandos:
+# Comandos⌨️:
 Tras la ejecución del programa, este le pedirá valores que sigue la siguiente estructura:
 `<comando><parámetro>`
 cada puerta, ventana y Pir contiene un identificador `i`. usted deberá modificar dicho valor donde `i` es acompañado de una letra en la sección comando. 
@@ -72,7 +72,7 @@ los valores ingresados pueden ser los siguientes:
 | `wi`| `c`  |  deja la ventana `i` cerrado |
 | `ci`| `x` `y`  |  crea una persona en la posición <`x`,`y`> |
 
-### Comandos de desplazamiento:
+### Comandos de desplazamiento🧭:
 Para utilizar estos comando, primero debe haber creado como mínimo 1 persona. `i` es el identificador de cada persona que va acompañado del comando `p`.
 | `Comando`  | `Parámetro` |  `Descripción` |
 | ------------- | ------------- | ------------- | 
