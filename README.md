@@ -56,14 +56,16 @@ $make run
 
 
 # Funcionamiento⚙️:
-En el sistema Very-sur, existe un sistema de alarmas (central)
-```explicacion clase central y clase sensor```
+En el sistema Very-sur, existe un sistema de alarmas (central).
+```explicación clase central y clase sensor```
+Esta se encargará monitorear los sensores y generará un archivo ```output.csv```, el cuál almacena los eventos paso por paso que ingresa  
+
 
 En este existen sensores magneticos los cuales estan instalados en puertas y ventanas. Estos contienen un interruptor, en la cual detecta si las puertas y ventanas están abiertas o cerradas.
-```explicacion clase sensor magnetico```
+```explicación clase sensor magnetico```
 
 Además, existe un sensor llamado PIR, los cuales detectan las personas dentro de un radio indicado
-```explicacion clase pir```
+```explicación clase pir```
 
 
 Luego de ser instalada la alarma, cuando una persona pasa por dentro del radio de la alarma, la alarma suena indefinidamente.
@@ -71,3 +73,6 @@ Luego de ser instalada la alarma, cuando una persona pasa por dentro del radio d
 <p align="center">
   <img src="https://github.com/sbstn-sss/Alarmas_Very_Sur/blob/main/UMLDiagram.drawio.png?raw=true" width="1000"  alt="Alarmas Very Sur">
 </p>
+
+
+
