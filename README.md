@@ -79,4 +79,4 @@ Para utilizar estos comando, primero debe haber creado como mínimo 1 persona. `
 | `pi`| `w`  |  desplaza la persona `i` 0.5 metros al norte  |
 | `pi`| `s`  |  desplaza la persona `i` 0.5 metros al sur  |
 | `pi`| `d`  |  desplaza la persona `i` 0.5 metros al este  |
-| `pi`| `a`  |  desplaza la persona `i` 0.5 metros al oeste  |
+| `pi`| `a`  |  desplaza la persona `i` 0.5 metros al oeste  | 
