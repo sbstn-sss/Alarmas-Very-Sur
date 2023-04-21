@@ -107,8 +107,12 @@ public class Stage3 {
 
 
         out.print("\t");out.print(siren.getState());out.print("    ");
-        out.print("\t");out.print(central.getState()); // completar para central
+        out.print("\t");out.print(central.getState()); 
 
+        for (int i = 0; i < persons.size(); i++) {
+            out.print("\t" + persons.get(i).getPosition().getX());
+            out.print(" " + persons.get(i).getPosition().getY());
+        }
         out.println();
     }
     //interaccion usuario
