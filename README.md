@@ -33,7 +33,7 @@ Nuesto objetivo consiste en crear un programa que modele las funcionalidades de 
 El programa funciona en Java, por lo que es necesario una IDE que trabaje con dicho lenguaje. Recomendamos que fuese ejecutado en IntelliJ, ya que el código fue contruido con la versión más actual a la fecha "17.0.6+10-b829.5 amd64" ,y se ahorrará los pasos de compilación importando el proyecto y luego haciendo click en el botón "Run". 
 
 
-Al descargar el proyecto, notará que contiene distintas carpetas que van desde la stage uno a la stage cuatro. Cada una de estas carpetas contienen un archivo makefile que nos ayudará a compilar cada stage (Se explicará el funcionamiento de cada stage en "Funcionamiento").
+Al descargar el proyecto, notará que contiene distintas carpetas que van desde la stage uno a la stage cuatro. Cada una de estas carpetas contienen un archivo makefile que nos ayudará a compilar cada stage.
 
 Si desea compilar en aragorn o vía terminal, primero diríjase a la carpeta de alguna stage por comando. Como cada stage contiene su propio makefile, escriba el comando:
 
@@ -41,7 +41,7 @@ Si desea compilar en aragorn o vía terminal, primero diríjase a la carpeta de 
 $make
 
 ```
-así, el programa se compilará y como resultado entregará un ejecutable llamado "(por definir)".
+así, el programa se compilará y como resultado entregará un ejecutable.
 
 si desea borrar el ejecutable, bastará con escribir:
 ```
