@@ -76,7 +76,7 @@ los valores ingresados pueden ser los siguientes:
 Para utilizar estos comando, primero debe haber creado como mínimo 1 persona. `i` es el identificador de cada persona que va acompañado del comando `p`.
 | `Comando`  | `Parámetro` |  `Descripción` |
 | ------------- | ------------- | ------------- | 
-| `pi`| `n`  |  desplaza la persona `i` 0.5 metros al norte  |
+| `pi`| `w`  |  desplaza la persona `i` 0.5 metros al norte  |
 | `pi`| `s`  |  desplaza la persona `i` 0.5 metros al sur  |
-| `pi`| `e`  |  desplaza la persona `i` 0.5 metros al este  |
-| `pi`| `n`  |  desplaza la persona `i` 0.5 metros al oeste  |
+| `pi`| `d`  |  desplaza la persona `i` 0.5 metros al este  |
+| `pi`| `a`  |  desplaza la persona `i` 0.5 metros al oeste  |
